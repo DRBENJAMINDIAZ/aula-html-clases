@@ -194,12 +194,12 @@
           </div>
         </div>
         <div class="header-actions">
-          <button class="ghost-btn" id="addTop">Subir actividad</button>
+          <button class="ghost-btn" id="addTop">Administrar en GitHub</button>
         </div>
       </div>
       <div class="eyebrow">Recursos interactivos para clase</div>
       <h1>Sus actividades, listas para enseñar.</h1>
-      <p class="hero-copy">Organice, busque y abra sus ejercicios HTML desde un solo lugar. Todo queda guardado en este navegador.</p>
+      <p class="hero-copy">Organice, comparta y abra sus ejercicios HTML desde un solo lugar. Cada archivo publicado en GitHub obtiene una liga individual.</p>
     </div>
   </header>
 
@@ -210,7 +210,7 @@
         <input class="control" id="search" type="search" placeholder="Buscar por título, materia o grupo…" aria-label="Buscar actividades">
       </div>
       <select class="control" id="subjectFilter" aria-label="Filtrar por materia"><option value="">Todas las materias</option></select>
-      <button class="primary-btn" id="addMain">＋ Subir HTML</button>
+      <button class="primary-btn" id="addMain">＋ Subir en GitHub</button>
     </div>
 
     <div class="section-head">
@@ -274,12 +274,12 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script>
-    const DB_NAME = 'AulaHTML_DB';
-    const STORE = 'activities';
-    let db;
+    const REPO = 'DRBENJAMINDIAZ/aula-html-clases';
+    const FOLDER = 'actividades';
+    const BRANCH = 'main';
+    const PAGES_BASE = 'https://drbenjamindiaz.github.io/aula-html-clases/';
+    const UPLOAD_URL = `https://github.com/${REPO}/upload/${BRANCH}/${FOLDER}`;
     let activities = [];
-    let selectedFile = null;
-    let previewUrl = null;
     let previewActivity = null;
 
     const $ = (s) => document.querySelector(s);
@@ -287,34 +287,46 @@
     const uploadDialog = $('#uploadDialog');
     const previewDialog = $('#previewDialog');
 
-    function openDB() {
-      return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, 1);
-        request.onupgradeneeded = () => {
-          const store = request.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
-          store.createIndex('subject', 'subject');
-          store.createIndex('createdAt', 'createdAt');
-        };
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-      });
-    }
-
-    function transaction(mode, action) {
-      return new Promise((resolve, reject) => {
-        const tx = db.transaction(STORE, mode);
-        const store = tx.objectStore(STORE);
-        const request = action(store);
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-      });
-    }
-
     async function refresh() {
-      activities = await transaction('readonly', s => s.getAll());
-      activities.sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
-      updateFilters();
-      render();
+      $('#count').textContent = 'Consultando GitHub…';
+      try {
+        const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`, {
+          headers: { Accept: 'application/vnd.github+json' }
+        });
+        if (response.status === 404) {
+          activities = [];
+          render(true);
+          return;
+        }
+        if (!response.ok) throw new Error(`GitHub respondió ${response.status}`);
+        const files = await response.json();
+        activities = files
+          .filter(file => file.type === 'file' && /\.html?$/i.test(file.name))
+          .map(file => {
+            const clean = file.name.replace(/\.html?$/i, '');
+            const parts = clean.split('__');
+            const subject = parts.length > 1 ? humanize(parts.shift()) : 'Actividad HTML';
+            const title = humanize(parts.length ? parts.join(' ') : clean);
+            return {
+              id: file.sha,
+              title,
+              subject,
+              group: 'Liga pública',
+              description: `Actividad publicada en GitHub · ${formatBytes(file.size)}`,
+              filename: file.name,
+              pageUrl: PAGES_BASE + FOLDER + '/' + encodeURIComponent(file.name),
+              downloadUrl: file.download_url
+            };
+          })
+          .sort((a,b) => a.title.localeCompare(b.title, 'es'));
+        updateFilters();
+        render();
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML = '<div class="empty"><div class="empty-icon">!</div><h3>No fue posible consultar GitHub</h3><p>Revise su conexión y vuelva a cargar la página.</p><button class="primary-btn" id="retry">Intentar nuevamente</button></div>';
+        $('#count').textContent = 'Sin conexión';
+        $('#retry')?.addEventListener('click', refresh);
+      }
     }
 
     function updateFilters() {
@@ -324,7 +336,7 @@
       if (subjects.includes(current)) $('#subjectFilter').value = current;
     }
 
-    function render() {
+    function render(folderMissing = false) {
       const query = normalize($('#search').value);
       const subject = $('#subjectFilter').value;
       const filtered = activities.filter(a => {
@@ -334,8 +346,8 @@
       $('#count').textContent = `${filtered.length} ${filtered.length === 1 ? 'actividad disponible' : 'actividades disponibles'}`;
       if (!filtered.length) {
         const hasFilters = query || subject;
-        grid.innerHTML = `<div class="empty"><div class="empty-icon">${hasFilters ? '⌕' : '＋'}</div><h3>${hasFilters ? 'No encontramos coincidencias' : 'Comience su biblioteca'}</h3><p>${hasFilters ? 'Pruebe con otra palabra o quite el filtro de materia.' : 'Suba su primera actividad HTML y téngala lista para abrir durante la clase.'}</p>${hasFilters ? '' : '<button class="primary-btn" id="emptyAdd">Subir mi primer HTML</button>'}</div>`;
-        $('#emptyAdd')?.addEventListener('click', openAdd);
+        grid.innerHTML = `<div class="empty"><div class="empty-icon">${hasFilters ? '⌕' : '＋'}</div><h3>${hasFilters ? 'No encontramos coincidencias' : 'Suba su primera actividad'}</h3><p>${hasFilters ? 'Pruebe con otra palabra o quite el filtro de materia.' : (folderMissing ? 'Primero cree la carpeta actividades en el repositorio y coloque dentro sus archivos HTML.' : 'La carpeta actividades todavía no contiene archivos HTML.')}</p>${hasFilters ? '' : '<button class="primary-btn" id="emptyAdd">Ir a GitHub</button>'}</div>`;
+        $('#emptyAdd')?.addEventListener('click', openGitHub);
         return;
       }
       grid.innerHTML = filtered.map((a, i) => cardHTML(a, i)).join('');
@@ -344,112 +356,33 @@
 
     function cardHTML(a, i) {
       const accents = ['#2472a4', '#27866f', '#b8782f', '#7b5ea7', '#b54f5d'];
-      const date = new Intl.DateTimeFormat('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(a.updatedAt || a.createdAt));
       return `<article class="card" style="--accent:${accents[i % accents.length]}">
         <div class="card-band"></div><div class="card-body">
           <div class="card-top"><span class="subject">${escapeHTML(a.subject)}</span><div class="card-menu">
+            <button class="icon-btn" data-action="copy" data-id="${a.id}" title="Copiar liga" aria-label="Copiar liga">⧉</button>
             <button class="icon-btn" data-action="download" data-id="${a.id}" title="Descargar HTML" aria-label="Descargar">↓</button>
-            <button class="icon-btn" data-action="edit" data-id="${a.id}" title="Editar datos" aria-label="Editar">✎</button>
-            <button class="icon-btn" data-action="delete" data-id="${a.id}" title="Eliminar" aria-label="Eliminar">×</button>
           </div></div>
           <h3>${escapeHTML(a.title)}</h3>
           <p class="description">${escapeHTML(a.description || 'Actividad interactiva para utilizar durante la clase.')}</p>
-          <div class="meta"><span>▣ ${escapeHTML(a.group || 'Todos los grupos')}</span><span>◷ ${date}</span></div>
-          <div class="card-actions"><button class="primary-btn" data-action="preview" data-id="${a.id}">Abrir actividad</button><button class="secondary-btn" data-action="download" data-id="${a.id}" title="Descargar">↓</button></div>
+          <div class="meta"><span>▣ ${escapeHTML(a.group)}</span><span>↗ Liga individual</span></div>
+          <div class="card-actions"><button class="primary-btn" data-action="open" data-id="${a.id}">Abrir actividad</button><button class="secondary-btn" data-action="copy" data-id="${a.id}" title="Copiar liga">⧉</button></div>
         </div></article>`;
     }
 
-    function openAdd() {
-      $('#activityForm').reset();
-      $('#editId').value = '';
-      $('#formTitle').textContent = 'Nueva actividad';
-      $('#saveBtn').textContent = 'Guardar actividad';
-      $('#fileLabel').style.display = '';
-      $('#file').required = true;
-      selectedFile = null;
-      $('#fileName').textContent = '';
-      uploadDialog.showModal();
-    }
-
-    function openEdit(a) {
-      $('#editId').value = a.id;
-      $('#title').value = a.title;
-      $('#subject').value = a.subject;
-      $('#group').value = a.group || '';
-      $('#description').value = a.description || '';
-      $('#formTitle').textContent = 'Editar actividad';
-      $('#saveBtn').textContent = 'Guardar cambios';
-      $('#fileLabel').style.display = 'none';
-      $('#file').required = false;
-      selectedFile = null;
-      uploadDialog.showModal();
-    }
-
-    async function handleSubmit(event) {
-      event.preventDefault();
-      const editId = Number($('#editId').value);
-      const base = {
-        title: $('#title').value.trim(), subject: $('#subject').value.trim(),
-        group: $('#group').value.trim(), description: $('#description').value.trim(),
-        updatedAt: new Date().toISOString()
-      };
-      try {
-        if (editId) {
-          const old = activities.find(a => a.id === editId);
-          await transaction('readwrite', s => s.put({ ...old, ...base, id: editId }));
-          toast('Cambios guardados correctamente.');
-        } else {
-          if (!selectedFile) return toast('Seleccione un archivo HTML.');
-          if (selectedFile.size > 15 * 1024 * 1024) return toast('El archivo excede el límite de 15 MB.');
-          const html = await selectedFile.text();
-          await transaction('readwrite', s => s.add({ ...base, html, filename: selectedFile.name, createdAt: new Date().toISOString() }));
-          toast('Actividad agregada a su biblioteca.');
-        }
-        uploadDialog.close();
-        await refresh();
-      } catch (error) {
-        console.error(error);
-        toast('No fue posible guardar. Revise el espacio disponible del navegador.');
-      }
-    }
-
     async function handleCardAction(event) {
-      const id = Number(event.currentTarget.dataset.id);
+      const id = event.currentTarget.dataset.id;
       const a = activities.find(item => item.id === id);
       if (!a) return;
       const action = event.currentTarget.dataset.action;
-      if (action === 'preview') openPreview(a);
-      if (action === 'edit') openEdit(a);
-      if (action === 'download') downloadActivity(a);
-      if (action === 'delete') {
-        if (!confirm(`¿Eliminar “${a.title}”? Esta acción no se puede deshacer.`)) return;
-        await transaction('readwrite', s => s.delete(id));
-        toast('Actividad eliminada.');
-        await refresh();
-      }
+      if (action === 'open') window.open(a.pageUrl, '_blank', 'noopener');
+      if (action === 'copy') copyLink(a.pageUrl);
+      if (action === 'download') window.open(a.downloadUrl, '_blank', 'noopener');
     }
 
-    function makeUrl(a) { return URL.createObjectURL(new Blob([a.html], { type: 'text/html;charset=utf-8' })); }
-    function openPreview(a) {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
-      previewUrl = makeUrl(a); previewActivity = a;
-      $('#previewTitle').textContent = a.title;
-      $('#previewFrame').src = previewUrl;
-      previewDialog.showModal();
-    }
-    function downloadActivity(a) {
-      const url = makeUrl(a); const link = document.createElement('a');
-      link.href = url; link.download = a.filename || `${slug(a.title)}.html`; link.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    }
-
-    function acceptFile(file) {
-      if (!file) return;
-      const valid = /\.html?$/i.test(file.name) || file.type === 'text/html';
-      if (!valid) return toast('Seleccione un archivo con extensión .html o .htm.');
-      selectedFile = file;
-      $('#fileName').textContent = `Seleccionado: ${file.name}`;
-      if (!$('#title').value) $('#title').value = file.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ');
+    function openGitHub() { window.open(UPLOAD_URL, '_blank', 'noopener'); }
+    async function copyLink(url) {
+      try { await navigator.clipboard.writeText(url); toast('Liga individual copiada.'); }
+      catch { prompt('Copie esta liga:', url); }
     }
 
     function toast(message) {
@@ -459,29 +392,14 @@
     function normalize(value) { return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
     function escapeHTML(value='') { return value.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
     function escapeAttr(value='') { return escapeHTML(value); }
-    function slug(value) { return normalize(value).replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'actividad'; }
+    function humanize(value='') { return value.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/\b\w/g, c => c.toUpperCase()); }
+    function formatBytes(bytes=0) { return bytes < 1024 ? `${bytes} B` : bytes < 1048576 ? `${(bytes/1024).toFixed(1)} KB` : `${(bytes/1048576).toFixed(1)} MB`; }
 
-    $('#addTop').addEventListener('click', openAdd);
-    $('#addMain').addEventListener('click', openAdd);
-    $('#activityForm').addEventListener('submit', handleSubmit);
-    $('#search').addEventListener('input', render);
-    $('#subjectFilter').addEventListener('change', render);
-    $('#file').addEventListener('change', e => acceptFile(e.target.files[0]));
-    $('#dropzone').addEventListener('click', () => $('#file').click());
-    $('#dropzone').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') $('#file').click(); });
-    ['dragenter','dragover'].forEach(type => $('#dropzone').addEventListener(type, e => { e.preventDefault(); $('#dropzone').classList.add('drag'); }));
-    ['dragleave','drop'].forEach(type => $('#dropzone').addEventListener(type, e => { e.preventDefault(); $('#dropzone').classList.remove('drag'); }));
-    $('#dropzone').addEventListener('drop', e => acceptFile(e.dataTransfer.files[0]));
-    document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => {
-      const dialog = document.getElementById(btn.dataset.close); dialog.close();
-      if (dialog === previewDialog) { $('#previewFrame').src = 'about:blank'; if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = null; }
-    }));
-    $('#openTab').addEventListener('click', () => { if (previewActivity) window.open(makeUrl(previewActivity), '_blank', 'noopener'); });
-
-    (async () => {
-      try { db = await openDB(); await refresh(); }
-      catch (error) { console.error(error); grid.innerHTML = '<div class="empty"><h3>No se pudo abrir el almacenamiento</h3><p>Use un navegador moderno y permita el almacenamiento local para este sitio.</p></div>'; }
-    })();
+    $('#addTop').addEventListener('click', openGitHub);
+    $('#addMain').addEventListener('click', openGitHub);
+    $('#search').addEventListener('input', () => render());
+    $('#subjectFilter').addEventListener('change', () => render());
+    refresh();
   </script>
 </body>
 </html>
