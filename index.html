@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123a63">
+  <title>Aula HTML | Dr. Benjamín Díaz Villanueva</title>
+  <style>
+    :root {
+      --navy: #123a63;
+      --navy-2: #0a2846;
+      --blue: #2472a4;
+      --sky: #dceef8;
+      --cream: #f6f3ed;
+      --paper: #fffdf9;
+      --ink: #132333;
+      --muted: #607080;
+      --line: #d8e0e7;
+      --green: #27866f;
+      --danger: #b53d42;
+      --shadow: 0 18px 55px rgba(10, 40, 70, .12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 92% 5%, rgba(36, 114, 164, .13), transparent 23rem),
+        linear-gradient(145deg, #f8f6f1 0%, #f2f6f8 55%, #eef4f7 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      padding: 28px 0 44px;
+      color: white;
+      background:
+        linear-gradient(115deg, rgba(10, 40, 70, .97), rgba(18, 58, 99, .93)),
+        repeating-linear-gradient(135deg, transparent 0 12px, rgba(255,255,255,.03) 12px 14px);
+      border-bottom-left-radius: 38px;
+      border-bottom-right-radius: 38px;
+      box-shadow: 0 18px 50px rgba(10, 40, 70, .17);
+    }
+
+    .topbar { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .brand-mark {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      border-radius: 15px; background: #fff; color: var(--navy);
+      font: 800 17px/1 Georgia, serif; letter-spacing: -.05em;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.4), 0 8px 26px rgba(0,0,0,.18);
+    }
+    .brand-title { font-weight: 800; letter-spacing: -.02em; }
+    .brand-sub { color: #bad7e9; font-size: 13px; margin-top: 2px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 48px;
+      color: #c9e1ef; text-transform: uppercase; letter-spacing: .13em;
+      font-size: 12px; font-weight: 800;
+    }
+    .eyebrow::before { content: ""; width: 27px; height: 2px; border-radius: 2px; background: #5fb1d8; }
+    h1 { max-width: 760px; margin: 13px 0 12px; font: 700 clamp(38px, 6vw, 68px)/.98 Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
+    .hero-copy { max-width: 670px; margin: 0; color: #d8e8f2; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; }
+
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .ghost-btn, .primary-btn, .secondary-btn, .icon-btn {
+      border: 0; border-radius: 13px; font-weight: 750; transition: .18s ease;
+    }
+    .ghost-btn { padding: 11px 15px; color: white; background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.17); }
+    .ghost-btn:hover { background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    .primary-btn { padding: 13px 18px; color: white; background: var(--blue); box-shadow: 0 8px 22px rgba(36,114,164,.25); }
+    .primary-btn:hover { background: #1b6594; transform: translateY(-1px); }
+    .secondary-btn { padding: 11px 15px; color: var(--navy); background: var(--sky); }
+    .secondary-btn:hover { background: #cce7f5; }
+
+    main { padding: 34px 0 64px; }
+    .toolbar {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center;
+      margin: 0 0 24px;
+    }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #6c7d8d; }
+    .control {
+      width: 100%; min-height: 48px; padding: 11px 14px;
+      color: var(--ink); background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 14px; outline: none;
+      box-shadow: 0 5px 17px rgba(10,40,70,.04);
+    }
+    .search-wrap .control { padding-left: 46px; }
+    .control:focus { border-color: #65a9cf; box-shadow: 0 0 0 4px rgba(36,114,164,.12); }
+
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 30px 0 16px; }
+    h2 { margin: 0; font: 700 30px/1.1 Georgia, serif; letter-spacing: -.025em; color: var(--navy-2); }
+    .count { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .card {
+      position: relative; overflow: hidden; min-height: 285px; display: flex; flex-direction: column;
+      background: rgba(255,253,249,.91); border: 1px solid rgba(216,224,231,.9); border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(10,40,70,.07); transition: .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card-band { height: 8px; background: var(--accent, var(--blue)); }
+    .card-body { display: flex; flex-direction: column; flex: 1; padding: 21px; }
+    .card-top { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .subject { display: inline-flex; width: fit-content; padding: 6px 10px; border-radius: 999px; color: var(--navy); background: var(--sky); font-size: 12px; font-weight: 800; }
+    .card-menu { display: flex; gap: 5px; }
+    .icon-btn { width: 34px; height: 34px; display: grid; place-items: center; color: #627485; background: transparent; }
+    .icon-btn:hover { color: var(--navy); background: #edf3f6; }
+    .card h3 { margin: 18px 0 8px; font: 700 23px/1.15 Georgia, serif; color: var(--navy-2); letter-spacing: -.02em; }
+    .description { min-height: 44px; margin: 0 0 18px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px 13px; margin-top: auto; color: #6f7f8e; font-size: 12px; }
+    .meta span { display: inline-flex; gap: 5px; align-items: center; }
+    .card-actions { display: grid; grid-template-columns: 1fr auto; gap: 9px; margin-top: 19px; }
+
+    .empty {
+      grid-column: 1 / -1; padding: 66px 24px; text-align: center;
+      border: 1.5px dashed #b8c7d2; border-radius: 24px; background: rgba(255,255,255,.48);
+    }
+    .empty-icon { width: 70px; height: 70px; display: grid; place-items: center; margin: 0 auto 17px; border-radius: 22px; color: var(--blue); background: var(--sky); font-size: 32px; }
+    .empty h3 { margin: 0 0 7px; font: 700 24px Georgia, serif; color: var(--navy-2); }
+    .empty p { max-width: 490px; margin: 0 auto 19px; color: var(--muted); line-height: 1.55; }
+
+    dialog { width: min(610px, calc(100% - 28px)); padding: 0; border: 0; border-radius: 24px; color: var(--ink); background: var(--paper); box-shadow: 0 30px 100px rgba(5,26,45,.32); }
+    dialog::backdrop { background: rgba(7,27,45,.62); backdrop-filter: blur(4px); }
+    .modal-head { display: flex; justify-content: space-between; align-items: start; gap: 15px; padding: 25px 27px 16px; }
+    .modal-head h2 { font-size: 28px; }
+    .modal-head p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+    .close { border: 0; background: #edf2f5; color: var(--navy); width: 38px; height: 38px; border-radius: 12px; font-size: 20px; }
+    .form { display: grid; gap: 15px; padding: 8px 27px 27px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    label { display: grid; gap: 7px; color: #33495c; font-size: 13px; font-weight: 800; }
+    textarea.control { resize: vertical; min-height: 88px; }
+    .dropzone {
+      display: grid; place-items: center; min-height: 145px; padding: 22px; text-align: center;
+      border: 2px dashed #a8bfce; border-radius: 18px; background: #f4f8fa; transition: .18s ease;
+    }
+    .dropzone.drag { border-color: var(--blue); background: var(--sky); }
+    .dropzone strong { display: block; color: var(--navy); }
+    .dropzone small { display: block; color: var(--muted); margin-top: 6px; }
+    .dropzone input { display: none; }
+    .file-name { color: var(--green) !important; font-weight: 750; }
+    .form-actions { display: flex; justify-content: end; gap: 9px; padding-top: 4px; }
+    .cancel-btn { padding: 12px 15px; border: 0; border-radius: 13px; color: #536677; background: #edf1f3; font-weight: 750; }
+
+    #previewDialog { width: min(1440px, calc(100% - 20px)); height: calc(100dvh - 20px); max-width: none; }
+    .preview-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; }
+    .preview-head { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 12px 15px; border-bottom: 1px solid var(--line); }
+    .preview-title { font-weight: 800; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .preview-actions { display: flex; gap: 8px; }
+    iframe { width: 100%; height: 100%; border: 0; background: white; }
+
+    .toast { position: fixed; right: 20px; bottom: 20px; z-index: 20; max-width: min(370px, calc(100% - 40px)); padding: 13px 16px; color: white; background: var(--navy-2); border-radius: 13px; box-shadow: var(--shadow); transform: translateY(120px); opacity: 0; transition: .25s ease; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    footer { padding: 26px 0 35px; color: #70808e; text-align: center; font-size: 13px; }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbar { grid-template-columns: 1fr 1fr; }
+      .search-wrap { grid-column: 1 / -1; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(100% - 22px, 1180px); }
+      header { padding-top: 19px; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; }
+      .brand-sub { display: none; }
+      .header-actions .ghost-btn { font-size: 0; padding: 10px; }
+      .header-actions .ghost-btn::after { content: "＋"; font-size: 22px; }
+      .eyebrow { margin-top: 38px; }
+      .hero-copy { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+      .search-wrap { grid-column: auto; }
+      .two { grid-template-columns: 1fr; }
+      .modal-head, .form { padding-left: 19px; padding-right: 19px; }
+      .preview-head { align-items: start; }
+      .preview-actions .secondary-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark">BD</div>
+          <div>
+            <div class="brand-title">Aula HTML</div>
+            <div class="brand-sub">Dr. Benjamín Díaz Villanueva</div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="ghost-btn" id="addTop">Subir actividad</button>
+        </div>
+      </div>
+      <div class="eyebrow">Recursos interactivos para clase</div>
+      <h1>Sus actividades, listas para enseñar.</h1>
+      <p class="hero-copy">Organice, busque y abra sus ejercicios HTML desde un solo lugar. Todo queda guardado en este navegador.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+        <input class="control" id="search" type="search" placeholder="Buscar por título, materia o grupo…" aria-label="Buscar actividades">
+      </div>
+      <select class="control" id="subjectFilter" aria-label="Filtrar por materia"><option value="">Todas las materias</option></select>
+      <button class="primary-btn" id="addMain">＋ Subir HTML</button>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <h2>Biblioteca de actividades</h2>
+        <p class="count" id="count">Cargando…</p>
+      </div>
+    </div>
+    <section class="grid" id="grid" aria-live="polite"></section>
+  </main>
+
+  <footer>Portal docente · Dr. Benjamín Díaz Villanueva · Uso didáctico</footer>
+
+  <dialog id="uploadDialog">
+    <div class="modal-head">
+      <div><h2 id="formTitle">Nueva actividad</h2><p>Agregue un archivo HTML autocontenido a su biblioteca.</p></div>
+      <button class="close" data-close="uploadDialog" aria-label="Cerrar">×</button>
+    </div>
+    <form class="form" id="activityForm">
+      <input type="hidden" id="editId">
+      <label>Título de la actividad
+        <input class="control" id="title" required maxlength="90" placeholder="Ej. Ruleta del artículo 2-A de la LIVA">
+      </label>
+      <div class="two">
+        <label>Materia
+          <input class="control" id="subject" required maxlength="60" placeholder="Ej. Impuestos indirectos">
+        </label>
+        <label>Grupo o semestre
+          <input class="control" id="group" maxlength="40" placeholder="Ej. Grupo 401">
+        </label>
+      </div>
+      <label>Descripción breve
+        <textarea class="control" id="description" maxlength="220" placeholder="¿Qué aprenderán sus estudiantes?"></textarea>
+      </label>
+      <label id="fileLabel">Archivo HTML
+        <span class="dropzone" id="dropzone" role="button" tabindex="0">
+          <span><strong>Arrastre aquí su archivo</strong><small>o haga clic para seleccionarlo · máximo 15 MB</small><small class="file-name" id="fileName"></small></span>
+          <input id="file" type="file" accept=".html,.htm,text/html">
+        </span>
+      </label>
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" data-close="uploadDialog">Cancelar</button>
+        <button class="primary-btn" type="submit" id="saveBtn">Guardar actividad</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="previewDialog">
+    <div class="preview-shell">
+      <div class="preview-head">
+        <div class="preview-title" id="previewTitle">Vista previa</div>
+        <div class="preview-actions">
+          <button class="secondary-btn" id="openTab">Abrir en otra pestaña</button>
+          <button class="close" data-close="previewDialog" aria-label="Cerrar">×</button>
+        </div>
+      </div>
+      <iframe id="previewFrame" title="Vista previa de la actividad" sandbox="allow-scripts allow-forms allow-modals allow-downloads allow-popups"></iframe>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const DB_NAME = 'AulaHTML_DB';
+    const STORE = 'activities';
+    let db;
+    let activities = [];
+    let selectedFile = null;
+    let previewUrl = null;
+    let previewActivity = null;
+
+    const $ = (s) => document.querySelector(s);
+    const grid = $('#grid');
+    const uploadDialog = $('#uploadDialog');
+    const previewDialog = $('#previewDialog');
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, 1);
+        request.onupgradeneeded = () => {
+          const store = request.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+          store.createIndex('subject', 'subject');
+          store.createIndex('createdAt', 'createdAt');
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    function transaction(mode, action) {
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE, mode);
+        const store = tx.objectStore(STORE);
+        const request = action(store);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function refresh() {
+      activities = await transaction('readonly', s => s.getAll());
+      activities.sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+      updateFilters();
+      render();
+    }
+
+    function updateFilters() {
+      const current = $('#subjectFilter').value;
+      const subjects = [...new Set(activities.map(a => a.subject).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'es'));
+      $('#subjectFilter').innerHTML = '<option value="">Todas las materias</option>' + subjects.map(s => `<option value="${escapeAttr(s)}">${escapeHTML(s)}</option>`).join('');
+      if (subjects.includes(current)) $('#subjectFilter').value = current;
+    }
+
+    function render() {
+      const query = normalize($('#search').value);
+      const subject = $('#subjectFilter').value;
+      const filtered = activities.filter(a => {
+        const haystack = normalize([a.title, a.subject, a.group, a.description].join(' '));
+        return (!query || haystack.includes(query)) && (!subject || a.subject === subject);
+      });
+      $('#count').textContent = `${filtered.length} ${filtered.length === 1 ? 'actividad disponible' : 'actividades disponibles'}`;
+      if (!filtered.length) {
+        const hasFilters = query || subject;
+        grid.innerHTML = `<div class="empty"><div class="empty-icon">${hasFilters ? '⌕' : '＋'}</div><h3>${hasFilters ? 'No encontramos coincidencias' : 'Comience su biblioteca'}</h3><p>${hasFilters ? 'Pruebe con otra palabra o quite el filtro de materia.' : 'Suba su primera actividad HTML y téngala lista para abrir durante la clase.'}</p>${hasFilters ? '' : '<button class="primary-btn" id="emptyAdd">Subir mi primer HTML</button>'}</div>`;
+        $('#emptyAdd')?.addEventListener('click', openAdd);
+        return;
+      }
+      grid.innerHTML = filtered.map((a, i) => cardHTML(a, i)).join('');
+      grid.querySelectorAll('[data-action]').forEach(btn => btn.addEventListener('click', handleCardAction));
+    }
+
+    function cardHTML(a, i) {
+      const accents = ['#2472a4', '#27866f', '#b8782f', '#7b5ea7', '#b54f5d'];
+      const date = new Intl.DateTimeFormat('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(a.updatedAt || a.createdAt));
+      return `<article class="card" style="--accent:${accents[i % accents.length]}">
+        <div class="card-band"></div><div class="card-body">
+          <div class="card-top"><span class="subject">${escapeHTML(a.subject)}</span><div class="card-menu">
+            <button class="icon-btn" data-action="download" data-id="${a.id}" title="Descargar HTML" aria-label="Descargar">↓</button>
+            <button class="icon-btn" data-action="edit" data-id="${a.id}" title="Editar datos" aria-label="Editar">✎</button>
+            <button class="icon-btn" data-action="delete" data-id="${a.id}" title="Eliminar" aria-label="Eliminar">×</button>
+          </div></div>
+          <h3>${escapeHTML(a.title)}</h3>
+          <p class="description">${escapeHTML(a.description || 'Actividad interactiva para utilizar durante la clase.')}</p>
+          <div class="meta"><span>▣ ${escapeHTML(a.group || 'Todos los grupos')}</span><span>◷ ${date}</span></div>
+          <div class="card-actions"><button class="primary-btn" data-action="preview" data-id="${a.id}">Abrir actividad</button><button class="secondary-btn" data-action="download" data-id="${a.id}" title="Descargar">↓</button></div>
+        </div></article>`;
+    }
+
+    function openAdd() {
+      $('#activityForm').reset();
+      $('#editId').value = '';
+      $('#formTitle').textContent = 'Nueva actividad';
+      $('#saveBtn').textContent = 'Guardar actividad';
+      $('#fileLabel').style.display = '';
+      $('#file').required = true;
+      selectedFile = null;
+      $('#fileName').textContent = '';
+      uploadDialog.showModal();
+    }
+
+    function openEdit(a) {
+      $('#editId').value = a.id;
+      $('#title').value = a.title;
+      $('#subject').value = a.subject;
+      $('#group').value = a.group || '';
+      $('#description').value = a.description || '';
+      $('#formTitle').textContent = 'Editar actividad';
+      $('#saveBtn').textContent = 'Guardar cambios';
+      $('#fileLabel').style.display = 'none';
+      $('#file').required = false;
+      selectedFile = null;
+      uploadDialog.showModal();
+    }
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      const editId = Number($('#editId').value);
+      const base = {
+        title: $('#title').value.trim(), subject: $('#subject').value.trim(),
+        group: $('#group').value.trim(), description: $('#description').value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      try {
+        if (editId) {
+          const old = activities.find(a => a.id === editId);
+          await transaction('readwrite', s => s.put({ ...old, ...base, id: editId }));
+          toast('Cambios guardados correctamente.');
+        } else {
+          if (!selectedFile) return toast('Seleccione un archivo HTML.');
+          if (selectedFile.size > 15 * 1024 * 1024) return toast('El archivo excede el límite de 15 MB.');
+          const html = await selectedFile.text();
+          await transaction('readwrite', s => s.add({ ...base, html, filename: selectedFile.name, createdAt: new Date().toISOString() }));
+          toast('Actividad agregada a su biblioteca.');
+        }
+        uploadDialog.close();
+        await refresh();
+      } catch (error) {
+        console.error(error);
+        toast('No fue posible guardar. Revise el espacio disponible del navegador.');
+      }
+    }
+
+    async function handleCardAction(event) {
+      const id = Number(event.currentTarget.dataset.id);
+      const a = activities.find(item => item.id === id);
+      if (!a) return;
+      const action = event.currentTarget.dataset.action;
+      if (action === 'preview') openPreview(a);
+      if (action === 'edit') openEdit(a);
+      if (action === 'download') downloadActivity(a);
+      if (action === 'delete') {
+        if (!confirm(`¿Eliminar “${a.title}”? Esta acción no se puede deshacer.`)) return;
+        await transaction('readwrite', s => s.delete(id));
+        toast('Actividad eliminada.');
+        await refresh();
+      }
+    }
+
+    function makeUrl(a) { return URL.createObjectURL(new Blob([a.html], { type: 'text/html;charset=utf-8' })); }
+    function openPreview(a) {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = makeUrl(a); previewActivity = a;
+      $('#previewTitle').textContent = a.title;
+      $('#previewFrame').src = previewUrl;
+      previewDialog.showModal();
+    }
+    function downloadActivity(a) {
+      const url = makeUrl(a); const link = document.createElement('a');
+      link.href = url; link.download = a.filename || `${slug(a.title)}.html`; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function acceptFile(file) {
+      if (!file) return;
+      const valid = /\.html?$/i.test(file.name) || file.type === 'text/html';
+      if (!valid) return toast('Seleccione un archivo con extensión .html o .htm.');
+      selectedFile = file;
+      $('#fileName').textContent = `Seleccionado: ${file.name}`;
+      if (!$('#title').value) $('#title').value = file.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ');
+    }
+
+    function toast(message) {
+      const node = $('#toast'); node.textContent = message; node.classList.add('show');
+      clearTimeout(toast.timer); toast.timer = setTimeout(() => node.classList.remove('show'), 3000);
+    }
+    function normalize(value) { return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+    function escapeHTML(value='') { return value.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+    function escapeAttr(value='') { return escapeHTML(value); }
+    function slug(value) { return normalize(value).replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'actividad'; }
+
+    $('#addTop').addEventListener('click', openAdd);
+    $('#addMain').addEventListener('click', openAdd);
+    $('#activityForm').addEventListener('submit', handleSubmit);
+    $('#search').addEventListener('input', render);
+    $('#subjectFilter').addEventListener('change', render);
+    $('#file').addEventListener('change', e => acceptFile(e.target.files[0]));
+    $('#dropzone').addEventListener('click', () => $('#file').click());
+    $('#dropzone').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') $('#file').click(); });
+    ['dragenter','dragover'].forEach(type => $('#dropzone').addEventListener(type, e => { e.preventDefault(); $('#dropzone').classList.add('drag'); }));
+    ['dragleave','drop'].forEach(type => $('#dropzone').addEventListener(type, e => { e.preventDefault(); $('#dropzone').classList.remove('drag'); }));
+    $('#dropzone').addEventListener('drop', e => acceptFile(e.dataTransfer.files[0]));
+    document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => {
+      const dialog = document.getElementById(btn.dataset.close); dialog.close();
+      if (dialog === previewDialog) { $('#previewFrame').src = 'about:blank'; if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = null; }
+    }));
+    $('#openTab').addEventListener('click', () => { if (previewActivity) window.open(makeUrl(previewActivity), '_blank', 'noopener'); });
+
+    (async () => {
+      try { db = await openDB(); await refresh(); }
+      catch (error) { console.error(error); grid.innerHTML = '<div class="empty"><h3>No se pudo abrir el almacenamiento</h3><p>Use un navegador moderno y permita el almacenamiento local para este sitio.</p></div>'; }
+    })();
+  </script>
+</body>
+</html>

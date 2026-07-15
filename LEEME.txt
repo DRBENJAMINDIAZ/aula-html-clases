@@ -1,0 +1,19 @@
+PORTAL AULA HTML
+Dr. Benjamín Díaz Villanueva
+
+INICIO RÁPIDO
+1. Abra el archivo index.html con Chrome, Edge, Safari o Firefox.
+2. Pulse “Subir HTML”.
+3. Capture el título, la materia y el grupo.
+4. Seleccione su archivo .html y guarde.
+5. Use “Abrir actividad” para mostrarla durante la clase.
+
+IMPORTANTE
+- Las actividades quedan guardadas únicamente en el navegador y dispositivo en el que se cargaron.
+- Si borra los datos del navegador, también se eliminará la biblioteca.
+- El portal admite archivos HTML autocontenidos de hasta 15 MB.
+- Si el HTML depende de carpetas externas con imágenes, sonidos o scripts, conviene integrarlos primero en un único archivo.
+- Para usar el mismo catálogo en varios equipos o compartirlo con estudiantes se requiere publicar el portal y conectar un almacenamiento en línea.
+
+USO DIDÁCTICO
+Portal elaborado para el Dr. Benjamín Díaz Villanueva.
