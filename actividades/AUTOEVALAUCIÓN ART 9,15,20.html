@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="es" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Cuestionario autoevaluable LIVA · Artículos 9, 15 y 20 · Nuevo</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: transparent !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --main-surface-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --red: light-dark(rgb(186 38 35), rgb(250 66 62));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 10px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-visualize-standalone] {
+  background-color: var(--background) !important;
+}
+
+/* Generic mobile code-block hosts provide light/dark mode but no series palette.
+   AppBlock hosts set all six variables themselves. */
+:root:not([data-app-block-surface]) {
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(#f3883b, #f59a56);
+  --viz-series-3: light-dark(#5dc977, #74d58b);
+  --viz-series-4: light-dark(#eb77b1, #f08fc0);
+  --viz-series-5: light-dark(#9b79ec, #aa91ef);
+  --viz-series-6: light-dark(#3ab9b1, #5acbc2);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+:root:not([data-app-block-surface]) > body {
+  padding: 12px;
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The bundled tooltip runtime owns [data-tooltip]. AppBlock's CSS-only
+   pseudo-tooltip can widen dense grids even while hidden. */
+main [data-tooltip]::after {
+  content: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--interactive-label-primary-default, var(--primary-foreground));
+  background: var(--interactive-bg-primary-default, var(--foreground));
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(
+    in srgb,
+    var(--interactive-label-primary-default, var(--primary-foreground)) 50%,
+    transparent
+  );
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+</style>
+</head>
+<body>
+<div id="liva-quiz-app">
+  <style>
+    #liva-quiz-app{--quiz-blue:var(--primary);--quiz-blue-text:var(--primary-foreground);--quiz-soft:var(--accent);--quiz-soft-text:var(--accent-foreground);--quiz-line:var(--border);--quiz-good:var(--green);--quiz-bad:var(--destructive);color:var(--foreground);background:var(--background);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+    #liva-quiz-app *{box-sizing:border-box}
+    #liva-quiz-app button,#liva-quiz-app input{font:inherit}
+    #liva-quiz-app .quiz-header{background:var(--primary);color:var(--primary-foreground);padding:24px clamp(16px,4vw,48px)}
+    #liva-quiz-app .quiz-header h1{margin:0 0 8px;font-size:clamp(28px,5vw,48px)}
+    #liva-quiz-app .quiz-header p{margin:4px 0}
+    #liva-quiz-app .author-line{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-weight:700}
+    #liva-quiz-app .quiz-shell{width:min(1180px,100%);margin:0 auto;padding:22px clamp(14px,3vw,30px) 48px}
+    #liva-quiz-app .rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+    #liva-quiz-app .rule{padding:12px;border-bottom:3px solid var(--border);background:var(--muted);color:var(--foreground)}
+    #liva-quiz-app .rule strong{display:block;margin-bottom:3px}
+    #liva-quiz-app .screen{background:var(--card);color:var(--card-foreground);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,4vw,34px)}
+    #liva-quiz-app .hidden{display:none!important}
+    #liva-quiz-app .start-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start}
+    #liva-quiz-app .start-grid h2{margin-top:0}
+    #liva-quiz-app .start-list{padding-left:21px;line-height:1.65}
+    #liva-quiz-app .form-label{display:block;font-weight:700;margin:0 0 8px}
+    #liva-quiz-app .form-control{display:block;width:100%;padding:12px 14px;border:1px solid var(--input);border-radius:9px;background:var(--background);color:var(--foreground)}
+    #liva-quiz-app .attempt-warning{margin:16px 0;padding:13px;border-left:5px solid var(--destructive);background:var(--muted);font-weight:700}
+    #liva-quiz-app .btn{border:1px solid var(--border);background:var(--secondary);color:var(--secondary-foreground);border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}
+    #liva-quiz-app .btn:hover{background:var(--accent);color:var(--accent-foreground)}
+    #liva-quiz-app .btn-primary{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+    #liva-quiz-app .btn:disabled{opacity:.45;cursor:not-allowed}
+    #liva-quiz-app .quiz-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    #liva-quiz-app .progress-track{height:12px;flex:1;background:var(--muted);border-radius:999px;overflow:hidden}
+    #liva-quiz-app .progress-fill{height:100%;width:0;background:var(--primary);transition:width .25s ease}
+    #liva-quiz-app .quiz-grid{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start}
+    #liva-quiz-app .question-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+    #liva-quiz-app .qdot{aspect-ratio:1;border:1px solid var(--border);border-radius:8px;background:var(--background);color:var(--foreground);font-weight:700;cursor:pointer}
+    #liva-quiz-app .qdot.answered{background:var(--accent);color:var(--accent-foreground)}
+    #liva-quiz-app .qdot.current{outline:3px solid var(--ring);outline-offset:1px}
+    #liva-quiz-app .question-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted-foreground);font-weight:700}
+    #liva-quiz-app .article-badge{display:inline-block;background:var(--accent);color:var(--accent-foreground);border-radius:999px;padding:6px 11px}
+    #liva-quiz-app .question-title{font-size:clamp(21px,3vw,29px);line-height:1.3;margin:18px 0}
+    #liva-quiz-app .answers{display:grid;gap:11px}
+    #liva-quiz-app .answer{display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;padding:14px;border:1px solid var(--border);border-radius:11px;background:var(--background);color:var(--foreground);cursor:pointer}
+    #liva-quiz-app .answer:hover{background:var(--accent);color:var(--accent-foreground)}
+    #liva-quiz-app .answer.selected{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+    #liva-quiz-app .letter{display:grid;place-items:center;min-width:32px;height:32px;border:1px solid currentColor;border-radius:50%;font-weight:800}
+    #liva-quiz-app .quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+    #liva-quiz-app .review-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:20px 0}
+    #liva-quiz-app .review-item{padding:12px 6px;text-align:center;border:1px solid var(--border);background:var(--background);border-radius:9px;font-weight:700}
+    #liva-quiz-app .review-item.done{background:var(--accent);color:var(--accent-foreground)}
+    #liva-quiz-app .review-summary{font-size:18px;line-height:1.55}
+    #liva-quiz-app .final-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    #liva-quiz-app .result-hero{text-align:center;padding:12px 0 26px}
+    #liva-quiz-app .result-label{font-weight:700;color:var(--muted-foreground)}
+    #liva-quiz-app .grade{font-size:clamp(72px,16vw,145px);line-height:1;font-weight:900;color:var(--primary);margin:8px 0}
+    #liva-quiz-app .status{font-size:clamp(24px,4vw,38px);font-weight:900;margin:8px 0}
+    #liva-quiz-app .status.pass{color:var(--green)}
+    #liva-quiz-app .status.fail{color:var(--destructive)}
+    #liva-quiz-app .result-message{font-size:20px;line-height:1.45;max-width:760px;margin:10px auto}
+    #liva-quiz-app .result-data{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+    #liva-quiz-app .result-data div{padding:13px;border-bottom:3px solid var(--border);background:var(--muted)}
+    #liva-quiz-app .result-data small{display:block;color:var(--muted-foreground);margin-bottom:4px}
+    #liva-quiz-app .result-toolbar{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0}
+    #liva-quiz-app .answer-review{margin-top:24px}
+    #liva-quiz-app .review-question{padding:16px 0;border-top:1px solid var(--border);break-inside:avoid}
+    #liva-quiz-app .review-question h3{margin:0 0 8px;font-size:17px}
+    #liva-quiz-app .review-question p{margin:5px 0}
+    #liva-quiz-app .correct-text{color:var(--green);font-weight:800}
+    #liva-quiz-app .wrong-text{color:var(--destructive);font-weight:800}
+    #liva-quiz-app .certificate{border:2px solid var(--primary);padding:22px;margin-top:18px;text-align:center}
+    #liva-quiz-app .certificate h2{margin:0 0 8px}
+    #liva-quiz-app .footer-note{text-align:center;color:var(--muted-foreground);margin-top:24px;font-size:13px}
+    #liva-quiz-app #confettiCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999}
+    @media(max-width:820px){#liva-quiz-app .rules{grid-template-columns:repeat(2,1fr)}#liva-quiz-app .start-grid,#liva-quiz-app .quiz-grid{grid-template-columns:1fr}#liva-quiz-app .question-nav{grid-template-columns:repeat(10,1fr)}#liva-quiz-app .result-data{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){#liva-quiz-app .rules{grid-template-columns:1fr 1fr}#liva-quiz-app .question-nav{grid-template-columns:repeat(5,1fr)}#liva-quiz-app .review-grid{grid-template-columns:repeat(5,1fr)}#liva-quiz-app .result-data{grid-template-columns:1fr}#liva-quiz-app .quiz-actions .btn{flex:1}}
+    @media print{
+      #liva-quiz-app{background:transparent!important;color:#000!important;min-height:0}
+      #liva-quiz-app .quiz-header{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:12px 0}
+      #liva-quiz-app .quiz-shell{padding:12px 0;width:100%}
+      #liva-quiz-app .rules,#liva-quiz-app #startScreen,#liva-quiz-app #quizScreen,#liva-quiz-app #reviewScreen,#liva-quiz-app .result-toolbar,#liva-quiz-app #confettiCanvas,#liva-quiz-app .footer-note{display:none!important}
+      #liva-quiz-app #resultScreen{display:block!important;border:0;padding:0;color:#000!important;background:#fff!important}
+      #liva-quiz-app .grade,#liva-quiz-app .status,#liva-quiz-app .correct-text,#liva-quiz-app .wrong-text{color:#000!important}
+      #liva-quiz-app .result-data div{background:#fff!important;border:1px solid #000}
+      #liva-quiz-app .answer-review{display:block!important}
+      #liva-quiz-app .review-question{page-break-inside:avoid}
+      #liva-quiz-app .certificate{border:2px solid #000}
+    }
+  </style>
+
+  <header class="quiz-header">
+    <h1>Autoevaluación de la LIVA</h1>
+    <p>Artículos 9, 15 y 20 · 25 preguntas de opción múltiple</p>
+    <div class="author-line"><span>Autor: Dr. Benjamín Díaz Villanueva</span><span>Uso didáctico</span></div>
+  </header>
+
+  <main class="quiz-shell">
+    <section class="rules" aria-label="Reglas del cuestionario">
+      <div class="rule"><strong>25 preguntas</strong><span>Opciones A, B, C y D</span></div>
+      <div class="rule"><strong>Un solo intento</strong><span>El resultado queda bloqueado</span></div>
+      <div class="rule"><strong>Calificación</strong><span>De 0.0 a 10.0</span></div>
+      <div class="rule"><strong>Aprobación</strong><span>Mayor de 5.0</span></div>
+    </section>
+
+    <section id="startScreen" class="screen">
+      <div class="start-grid">
+        <div>
+          <h2>Indicaciones</h2>
+          <ul class="start-list">
+            <li>Seleccione una respuesta en cada reactivo.</li>
+            <li>Puede regresar y modificar respuestas antes de finalizar.</li>
+            <li>Al confirmar el envío se consumirá el único intento.</li>
+            <li>La calificación final y las respuestas correctas podrán imprimirse o guardarse como PDF.</li>
+            <li>Con 5.0 o menos la calificación es reprobatoria; se aprueba con más de 5.0.</li>
+          </ul>
+        </div>
+        <div>
+          <label class="form-label" for="studentName">Nombre completo del estudiante</label>
+          <input id="studentName" class="form-control" type="text" autocomplete="name" maxlength="100" placeholder="Escriba su nombre">
+          <div class="attempt-warning">Importante: este cuestionario permite solamente un intento en este navegador.</div>
+          <button id="startBtn" class="btn btn-primary" type="button">Comenzar único intento</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen hidden">
+      <div class="quiz-top"><strong id="answeredCounter">0 de 25 respondidas</strong><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div></div>
+      <div class="quiz-grid">
+        <nav id="questionNav" class="question-nav" aria-label="Navegación de preguntas"></nav>
+        <article>
+          <div class="question-meta"><span id="articleBadge" class="article-badge"></span><span id="questionNumber"></span></div>
+          <h2 id="questionText" class="question-title"></h2>
+          <div id="answersBox" class="answers"></div>
+          <div class="quiz-actions">
+            <button id="prevBtn" class="btn" type="button">← Anterior</button>
+            <button id="reviewBtn" class="btn" type="button">Revisar respuestas</button>
+            <button id="nextBtn" class="btn btn-primary" type="button">Siguiente →</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="reviewScreen" class="screen hidden">
+      <h2>Revisión antes de finalizar</h2>
+      <p class="review-summary" id="reviewSummary"></p>
+      <div id="reviewGrid" class="review-grid"></div>
+      <p><strong>Recuerde:</strong> al finalizar, las respuestas quedarán bloqueadas y no habrá un segundo intento.</p>
+      <div class="final-actions">
+        <button id="returnBtn" class="btn" type="button">← Regresar al cuestionario</button>
+        <button id="finishBtn" class="btn btn-primary" type="button">Finalizar y calificar</button>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen hidden" aria-live="polite">
+      <div class="result-hero">
+        <div class="result-label">CALIFICACIÓN FINAL · ÚNICO INTENTO</div>
+        <div id="grade" class="grade">0.0</div>
+        <div id="status" class="status"></div>
+        <p id="resultMessage" class="result-message"></p>
+      </div>
+      <div class="result-data">
+        <div><small>Estudiante</small><strong id="resultName"></strong></div>
+        <div><small>Respuestas correctas</small><strong id="correctCount"></strong></div>
+        <div><small>Respuestas incorrectas</small><strong id="wrongCount"></strong></div>
+        <div><small>Fecha y hora</small><strong id="resultDate"></strong></div>
+      </div>
+      <div class="certificate">
+        <h2>Constancia de resultado</h2>
+        <p>Autoevaluación de los artículos 9, 15 y 20 de la Ley del Impuesto al Valor Agregado.</p>
+        <p><strong>Autor del material:</strong> Dr. Benjamín Díaz Villanueva · <strong>Uso didáctico</strong></p>
+      </div>
+      <div class="result-toolbar">
+        <button id="printBtn" class="btn btn-primary" type="button">Imprimir o guardar resultado en PDF</button>
+        <button id="toggleReviewBtn" class="btn" type="button">Mostrar respuestas correctas</button>
+      </div>
+      <section id="answerReview" class="answer-review hidden">
+        <h2>Revisión de respuestas</h2>
+        <div id="answerReviewList"></div>
+      </section>
+    </section>
+
+    <p class="footer-note">Material académico de uso didáctico. La autoevaluación no sustituye el análisis integral de la legislación vigente.</p>
+  </main>
+  <canvas id="confettiCanvas" class="hidden" aria-hidden="true"></canvas>
+
+  <script>
+    (function(){
+      'use strict';
+      const root=document.getElementById('liva-quiz-app');
+      const storageKey='liva-autoevaluacion-arts-9-15-20-unico-intento-nuevo-20260722';
+      const letters=['A','B','C','D'];
+      const questions=[
+        {article:'Artículo 9',q:'¿Cuál es el tratamiento de la enajenación del suelo conforme al artículo 9, fracción I?',o:['Está exenta del IVA','Se grava a tasa 0%','Se grava siempre al 16%','Sólo está exenta si la vende una empresa'],a:0,e:'La fracción I establece la exención para la enajenación del suelo.'},
+        {article:'Artículo 9',q:'En la venta de un inmueble de uso mixto, ¿qué parte de la construcción queda exenta por casa-habitación?',o:['Toda la construcción','Sólo el local comercial','Sólo la parte destinada o utilizada como casa-habitación','Ninguna parte'],a:2,e:'La fracción II limita la exención a la parte destinada o utilizada como casa-habitación.'},
+        {article:'Artículo 9',q:'¿Cuál de las siguientes construcciones está expresamente excluida de la exención de casa-habitación?',o:['Una vivienda familiar','Un departamento sin uso comercial','Una casa en condominio','Un hotel'],a:3,e:'La fracción II señala expresamente que los hoteles no quedan comprendidos.'},
+        {article:'Artículo 9',q:'¿Qué operación puede quedar exenta conforme a la fracción III?',o:['La venta de libros realizada por cualquier comercio','La transmisión por el autor del derecho para usar o explotar su obra','La venta de equipo de impresión','La suscripción a una plataforma de video'],a:1,e:'La fracción III comprende libros, periódicos y revistas, así como el derecho para usar o explotar una obra que realice su autor.'},
+        {article:'Artículo 9',q:'Una empresa vende una camioneta usada de su activo fijo. ¿La fracción IV concede la exención?',o:['Sí, porque todo bien usado está exento','Sí, si se vende a una persona física','No, porque excluye los bienes usados enajenados por empresas','No, porque las camionetas nunca pueden venderse'],a:2,e:'La fracción IV exenta bienes muebles usados, excepto los enajenados por empresas.'},
+        {article:'Artículo 9',q:'¿Qué tratamiento tienen los billetes para participar en loterías y los premios respectivos para efectos del IVA?',o:['Están exentos','Se gravan al 16%','Se gravan a tasa 0%','Sólo el premio está exento'],a:0,e:'La fracción V exenta los billetes y comprobantes de participación, así como los premios respectivos.'},
+        {article:'Artículo 9',q:'¿Cuál de los siguientes bienes se encuentra comprendido en la fracción VI?',o:['Acciones de una sociedad','Un lingote industrial de cobre','Un inmueble comercial','Moneda nacional y moneda extranjera'],a:3,e:'La fracción VI incluye moneda nacional, moneda extranjera y determinadas piezas monetarias.'},
+        {article:'Artículo 9',q:'¿Qué requisito debe cumplir un lingote de oro para la exención de la fracción VIII?',o:['Tener 80% de oro y venderse a mayoreo','Tener 99% de oro y venderse al menudeo al público','Ser una moneda extranjera','Pertenecer a una donataria'],a:1,e:'La fracción VIII exige un contenido mínimo de 99% de oro y venta al menudeo al público en general.'},
+
+        {article:'Artículo 15',q:'¿Qué comisión relacionada con un crédito hipotecario para casa-habitación puede quedar exenta?',o:['El avalúo pagado a un tercero','Una comisión posterior ajena al otorgamiento','La comisión cobrada por el acreedor con motivo del otorgamiento del crédito','Cualquier gasto notarial'],a:2,e:'La fracción I comprende comisiones cubiertas al acreedor con motivo del otorgamiento; excluye cargos posteriores y pagos a terceros.'},
+        {article:'Artículo 15',q:'¿Qué comisiones están comprendidas en la fracción II?',o:['Las cobradas por administrar recursos de los sistemas de ahorro para el retiro','Las comisiones por venta de automóviles','Las comisiones inmobiliarias','Las comisiones por tarjetas departamentales'],a:0,e:'La fracción II se refiere a comisiones cobradas a trabajadores por la administración de recursos para el retiro y servicios relacionados.'},
+        {article:'Artículo 15',q:'Los servicios prestados gratuitamente dejan de estar exentos por la fracción III cuando:',o:['Se prestan en domingo','El prestador es persona física','No existe contrato escrito','Los beneficiarios son miembros, socios o asociados de la persona moral prestadora'],a:3,e:'La excepción de la fracción III opera cuando los beneficiarios son miembros, socios o asociados de la persona moral.'},
+        {article:'Artículo 15',q:'¿Qué condición permite exentar la enseñanza impartida por particulares?',o:['Contar con autorización o reconocimiento de validez oficial de estudios','Cobrar colegiaturas mensuales','Tener instalaciones propias','Impartir exclusivamente clases presenciales'],a:0,e:'La fracción IV requiere autorización o reconocimiento de validez oficial, además de contemplar el nivel preescolar.'},
+        {article:'Artículo 15',q:'Un viaje urbano solicitado mediante plataforma y prestado con automóvil de uso particular:',o:['Siempre está exento','Se considera transporte marítimo','No se considera transporte público para la exención de la fracción V','Sólo está exento si el usuario paga en efectivo'],a:2,e:'La fracción V excluye el transporte contratado mediante plataformas cuando se presta con vehículos particulares.'},
+        {article:'Artículo 15',q:'¿Cuál servicio puede quedar exento conforme a la fracción VI?',o:['Transporte marítimo internacional de bienes por residente extranjero sin establecimiento permanente','Cabotaje entre puertos mexicanos','Transporte urbano por aplicación','Mudanza local'],a:0,e:'La fracción VI comprende transporte marítimo internacional de bienes en las condiciones indicadas y excluye el cabotaje.'},
+        {article:'Artículo 15',q:'¿Qué requisito es decisivo para la exención de servicios de la fracción VII?',o:['Que el servicio sea gratuito','Que se preste en el extranjero','Que el usuario sea estudiante','Que la persona moral esté autorizada para recibir donativos deducibles'],a:3,e:'La fracción VII se vincula con la calidad de donataria autorizada de la persona moral prestadora.'},
+        {article:'Artículo 15',q:'¿Cuál de los siguientes seguros está expresamente contemplado en la fracción IX?',o:['Seguro de teléfono celular','Seguro de vida que cubra el riesgo de muerte','Seguro de equipaje de viaje','Seguro de garantía extendida de electrodomésticos'],a:1,e:'La fracción IX incluye seguros de vida que cubran muerte u otorguen rentas vitalicias o pensiones.'},
+        {article:'Artículo 15',q:'¿Los intereses derivados de créditos otorgados mediante tarjetas de crédito están exentos por el inciso X.b?',o:['Sí, sin requisitos','Sí, cuando la compra es menor a $10,000','No, la disposición excluye esos créditos','Sólo durante el primer mes'],a:2,e:'La exención del primer párrafo del inciso X.b no aplica a créditos otorgados mediante tarjetas de crédito.'},
+        {article:'Artículo 15',q:'¿Cuál supuesto puede quedar exento conforme a la fracción XIV?',o:['Servicio profesional de medicina que requiere título y es prestado por persona física, incluso mediante sociedad civil','Servicio de estética sin título médico','Venta de medicamentos','Servicio administrativo de un hospital privado'],a:0,e:'La fracción XIV contempla servicios profesionales de medicina que requieren título, prestados por personas físicas en las formas señaladas.'},
+
+        {article:'Artículo 20',q:'¿Qué requisito corresponde a la fracción I?',o:['Que el bien sea un inmueble rural','Que el contrato dure menos de un año','Que el usuario sea persona física','Que el otorgante sea una persona moral autorizada para recibir donativos deducibles'],a:3,e:'La fracción I se refiere a bienes otorgados por personas morales autorizadas para recibir donativos deducibles.'},
+        {article:'Artículo 20',q:'Una casa sin muebles utilizada exclusivamente como vivienda:',o:['Siempre se grava al 16%','Puede quedar exenta por la fracción II','Sólo se exenta si se vende','Queda exenta por la fracción III'],a:1,e:'La fracción II exenta el uso o goce temporal de inmuebles destinados o utilizados exclusivamente para casa-habitación.'},
+        {article:'Artículo 20',q:'Un inmueble se utiliza 70% como vivienda y 30% como oficinas. ¿Qué tratamiento establece la fracción II?',o:['Todo queda exento','Todo queda gravado','Sólo la parte destinada o utilizada como casa-habitación queda exenta','Sólo las oficinas quedan exentas'],a:2,e:'En inmuebles con varios destinos, la exención se limita a la parte habitacional.'},
+        {article:'Artículo 20',q:'¿Cuál supuesto queda fuera de la exención de casa-habitación de la fracción II?',o:['Un departamento proporcionado amueblado o destinado a hospedaje','Una casa sin muebles para vivienda','La parte habitacional de un inmueble mixto','Una vivienda utilizada por una familia'],a:0,e:'La fracción II excluye inmuebles proporcionados amueblados y los destinados o utilizados como hoteles o casas de hospedaje.'},
+        {article:'Artículo 20',q:'¿Qué condición exige la fracción III para las fincas?',o:['Que estén cerca de una ciudad','Que tengan más de diez hectáreas','Que pertenezcan a una sociedad','Que se dediquen o utilicen sólo para fines agrícolas o ganaderos'],a:3,e:'El requisito central es el uso exclusivo para fines agrícolas o ganaderos.'},
+        {article:'Artículo 20',q:'¿Cuál es el estado de la fracción IV del artículo 20?',o:['Se aplica a hoteles','Está derogada','Establece tasa 0%','Regula servicios médicos'],a:1,e:'La fracción IV está derogada y no puede fundamentar una exención vigente.'},
+        {article:'Artículo 20',q:'¿Qué bienes comprende la fracción V?',o:['Automóviles usados','Maquinaria agrícola','Libros, periódicos y revistas','Moneda extranjera'],a:2,e:'La fracción V comprende el uso o goce temporal de libros, periódicos y revistas.'}
+      ];
+
+      const els={
+        start:root.querySelector('#startScreen'),quiz:root.querySelector('#quizScreen'),review:root.querySelector('#reviewScreen'),result:root.querySelector('#resultScreen'),
+        name:root.querySelector('#studentName'),startBtn:root.querySelector('#startBtn'),nav:root.querySelector('#questionNav'),badge:root.querySelector('#articleBadge'),number:root.querySelector('#questionNumber'),
+        text:root.querySelector('#questionText'),answers:root.querySelector('#answersBox'),prev:root.querySelector('#prevBtn'),next:root.querySelector('#nextBtn'),reviewBtn:root.querySelector('#reviewBtn'),
+        answered:root.querySelector('#answeredCounter'),progress:root.querySelector('#progressFill'),reviewSummary:root.querySelector('#reviewSummary'),reviewGrid:root.querySelector('#reviewGrid'),
+        returnBtn:root.querySelector('#returnBtn'),finishBtn:root.querySelector('#finishBtn'),grade:root.querySelector('#grade'),status:root.querySelector('#status'),message:root.querySelector('#resultMessage'),
+        resultName:root.querySelector('#resultName'),correct:root.querySelector('#correctCount'),wrong:root.querySelector('#wrongCount'),date:root.querySelector('#resultDate'),
+        print:root.querySelector('#printBtn'),toggleReview:root.querySelector('#toggleReviewBtn'),answerReview:root.querySelector('#answerReview'),answerList:root.querySelector('#answerReviewList'),canvas:root.querySelector('#confettiCanvas')
+      };
+      let state={name:'',answers:Array(questions.length).fill(null),current:0,started:false,submitted:false,result:null};
+      try{
+        const stored=JSON.parse(localStorage.getItem(storageKey)||'null');
+        if(stored&&Array.isArray(stored.answers)&&stored.answers.length===questions.length){state={...state,...stored};}
+      }catch(err){}
+
+      function save(){localStorage.setItem(storageKey,JSON.stringify(state));}
+      function show(screen){[els.start,els.quiz,els.review,els.result].forEach(el=>el.classList.add('hidden'));screen.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+      function answeredCount(){return state.answers.filter(v=>v!==null).length;}
+      function renderNav(){
+        els.nav.innerHTML=questions.map((_,i)=>'<button type="button" class="qdot '+(state.answers[i]!==null?'answered ':'')+(i===state.current?'current':'')+'" data-index="'+i+'" aria-label="Pregunta '+(i+1)+'">'+(i+1)+'</button>').join('');
+      }
+      function renderQuestion(){
+        const item=questions[state.current];
+        els.badge.textContent=item.article;
+        els.number.textContent='Pregunta '+(state.current+1)+' de '+questions.length;
+        els.text.textContent=item.q;
+        els.answers.innerHTML=item.o.map((option,i)=>'<button type="button" class="answer '+(state.answers[state.current]===i?'selected':'')+'" data-answer="'+i+'"><span class="letter">'+letters[i]+'</span><span>'+option+'</span></button>').join('');
+        els.prev.disabled=state.current===0;
+        els.next.textContent=state.current===questions.length-1?'Revisar respuestas →':'Siguiente →';
+        const count=answeredCount();
+        els.answered.textContent=count+' de '+questions.length+' respondidas';
+        els.progress.style.width=(count/questions.length*100)+'%';
+        renderNav();
+      }
+      function go(index){state.current=Math.max(0,Math.min(questions.length-1,index));save();renderQuestion();}
+      function openReview(){
+        const count=answeredCount();
+        els.reviewSummary.innerHTML=count===questions.length?'<strong>Las 25 preguntas están respondidas.</strong> Puede finalizar el único intento.':'Ha respondido <strong>'+count+' de '+questions.length+'</strong>. Faltan <strong>'+(questions.length-count)+'</strong> preguntas.';
+        els.reviewGrid.innerHTML=questions.map((_,i)=>'<button type="button" class="review-item '+(state.answers[i]!==null?'done':'')+'" data-review-index="'+i+'">'+(i+1)+'</button>').join('');
+        els.finishBtn.disabled=count!==questions.length;
+        show(els.review);
+      }
+      function buildAnswerReview(){
+        els.answerList.innerHTML=questions.map((item,i)=>{
+          const user=state.answers[i];
+          const ok=user===item.a;
+          return '<article class="review-question"><h3>'+(i+1)+'. '+item.q+'</h3><p class="'+(ok?'correct-text':'wrong-text')+'">Su respuesta: '+letters[user]+' — '+item.o[user]+'</p><p><strong>Respuesta correcta: '+letters[item.a]+' — '+item.o[item.a]+'</strong></p><p>'+item.e+'</p></article>';
+        }).join('');
+      }
+      function calculate(){
+        let correct=0;
+        questions.forEach((q,i)=>{if(state.answers[i]===q.a)correct++;});
+        const grade=Number((correct/questions.length*10).toFixed(1));
+        const passed=grade>5;
+        state.submitted=true;
+        state.result={correct:correct,wrong:questions.length-correct,grade:grade,passed:passed,date:new Date().toLocaleString('es-MX',{dateStyle:'long',timeStyle:'short'})};
+        save();
+        displayResult(true);
+      }
+      function displayResult(confetti){
+        const r=state.result;
+        els.grade.textContent=r.grade.toFixed(1);
+        els.status.textContent=r.passed?'APROBADO':'NO APROBADO';
+        els.status.className='status '+(r.passed?'pass':'fail');
+        els.message.textContent=r.passed?'¡Felicidades, '+state.name+'! Ha demostrado un buen dominio de los artículos 9, 15 y 20 de la LIVA.':'Le invitamos a seguir estudiando, '+state.name+'. Revise las respuestas correctas y vuelva a trabajar los artículos 9, 15 y 20 de la LIVA.';
+        els.resultName.textContent=state.name;
+        els.correct.textContent=r.correct+' de '+questions.length;
+        els.wrong.textContent=r.wrong+' de '+questions.length;
+        els.date.textContent=r.date;
+        buildAnswerReview();
+        show(els.result);
+        if(confetti)launchConfetti();
+      }
+      function launchConfetti(){
+        if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+        const canvas=els.canvas;
+        const ctx=canvas.getContext('2d');
+        canvas.width=window.innerWidth;canvas.height=window.innerHeight;canvas.classList.remove('hidden');
+        const css=getComputedStyle(root);
+        const colors=['--primary','--viz-series-1','--viz-series-2','--viz-series-3','--viz-series-4'].map(v=>css.getPropertyValue(v).trim()).filter(Boolean);
+        if(!colors.length)colors.push('#2878ff','#17a673','#f2b134','#d94f70');
+        const pieces=Array.from({length:180},()=>({x:Math.random()*canvas.width,y:-20-Math.random()*canvas.height*.4,w:5+Math.random()*8,h:8+Math.random()*12,vx:-3+Math.random()*6,vy:2+Math.random()*5,r:Math.random()*Math.PI,vr:-.18+Math.random()*.36,c:colors[Math.floor(Math.random()*colors.length)]}));
+        const started=performance.now();
+        function frame(now){
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
+          if(now-started<4800)requestAnimationFrame(frame);else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.classList.add('hidden');}
+        }
+        requestAnimationFrame(frame);
+      }
+
+      els.startBtn.addEventListener('click',()=>{
+        const name=els.name.value.trim();
+        if(!name){els.name.focus();alert('Escriba el nombre completo del estudiante.');return;}
+        state.name=name;state.started=true;save();show(els.quiz);renderQuestion();
+      });
+      els.answers.addEventListener('click',event=>{const button=event.target.closest('[data-answer]');if(!button)return;state.answers[state.current]=Number(button.dataset.answer);save();renderQuestion();});
+      els.nav.addEventListener('click',event=>{const button=event.target.closest('[data-index]');if(button)go(Number(button.dataset.index));});
+      els.prev.addEventListener('click',()=>go(state.current-1));
+      els.next.addEventListener('click',()=>{if(state.current===questions.length-1)openReview();else go(state.current+1);});
+      els.reviewBtn.addEventListener('click',openReview);
+      els.returnBtn.addEventListener('click',()=>{show(els.quiz);renderQuestion();});
+      els.reviewGrid.addEventListener('click',event=>{const button=event.target.closest('[data-review-index]');if(button){state.current=Number(button.dataset.reviewIndex);show(els.quiz);renderQuestion();}});
+      els.finishBtn.addEventListener('click',()=>{if(answeredCount()!==questions.length)return;if(confirm('¿Desea finalizar y consumir el único intento? Después no podrá modificar las respuestas.'))calculate();});
+      els.print.addEventListener('click',()=>{els.answerReview.classList.remove('hidden');els.toggleReview.textContent='Ocultar respuestas correctas';setTimeout(()=>window.print(),80);});
+      els.toggleReview.addEventListener('click',()=>{const hidden=els.answerReview.classList.toggle('hidden');els.toggleReview.textContent=hidden?'Mostrar respuestas correctas':'Ocultar respuestas correctas';});
+
+      if(state.submitted&&state.result){displayResult(false);}else if(state.started){show(els.quiz);renderQuestion();}else{els.name.value=state.name||'';show(els.start);}
+    })();
+  </script>
+</div>
+
+<script id="codex-visualization-floating-ui-core" src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script id="codex-visualization-floating-ui-dom" src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script id="codex-visualization-tooltip">/* oxlint-disable typescript/no-unsafe-argument, typescript/no-unsafe-call, typescript/no-unsafe-return */
+// Runs inside the visualization sandbox, not the host webview.
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide-initialization">(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+</body>
+</html>
