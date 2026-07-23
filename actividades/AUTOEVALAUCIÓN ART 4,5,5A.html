@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Dr. Benjamín Díaz Villanueva">
+  <meta name="description" content="Cuestionario autoevaluable sobre los artículos 4, 5 y 5-A de la Ley del Impuesto al Valor Agregado.">
+  <title>Evaluación LIVA · Artículos 4, 5 y 5-A</title>
+  <style>
+    :root {
+      --navy:#0b3155; --blue:#145a91; --sky:#eaf5ff; --gold:#f0b94b;
+      --ink:#172132; --muted:#657184; --paper:#fff; --canvas:#eef3f8;
+      --green:#16734a; --green-soft:#e8f8f0; --red:#a52b32; --red-soft:#fff0f1;
+      --line:#d5e0ea; --shadow:0 16px 45px rgba(11,49,85,.11);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--canvas);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,input{font:inherit} button{cursor:pointer}
+    .hero{position:relative;overflow:hidden;padding:58px 20px 48px;color:#fff;background:linear-gradient(135deg,#082844 0%,#145a91 62%,#147ca0 100%)}
+    .hero:after{content:"";position:absolute;width:340px;height:340px;right:-90px;top:-180px;border:70px solid rgba(240,185,75,.18);border-radius:50%}
+    .hero-inner{position:relative;z-index:1;max-width:1040px;margin:auto}
+    .eyebrow{margin:0 0 10px;color:#cde9ff;font-size:.8rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+    h1{max-width:800px;margin:0;font:800 clamp(2.2rem,5vw,4.35rem)/1.04 Georgia,serif;letter-spacing:-.035em}
+    .byline{display:flex;flex-wrap:wrap;gap:9px 22px;margin-top:20px;color:#eaf6ff}
+    .byline span:before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--gold)}
+    .wrap{max-width:1040px;margin:-20px auto 70px;padding:0 18px;position:relative;z-index:2}
+    .notice{padding:18px 22px;border:1px solid #b9d3e8;border-radius:16px;background:#f8fcff;box-shadow:var(--shadow)}
+    .notice strong{color:var(--navy)}
+    .notice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+    .metric{padding:12px;border-radius:11px;color:var(--muted);background:#fff;text-align:center}
+    .metric b{display:block;color:var(--blue);font-size:1.15rem}
+    .student-card,.quiz-card,.result-card{margin-top:18px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
+    .student-card{padding:24px}
+    .section-title{margin:0 0 16px;color:var(--navy);font:750 1.42rem/1.25 Georgia,serif}
+    .fields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+    label.field{display:grid;gap:6px;color:var(--muted);font-size:.85rem;font-weight:750}
+    input[type=text]{width:100%;padding:12px 13px;border:1px solid #bdcad6;border-radius:10px;color:var(--ink);background:#fff;outline:none}
+    input[type=text]:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,90,145,.14)}
+    .sticky-progress{position:sticky;top:0;z-index:20;margin:18px 0;padding:11px 16px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-shadow:0 8px 25px rgba(11,49,85,.08)}
+    .progress-row{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.86rem;font-weight:750}
+    .bar{height:8px;margin-top:8px;border-radius:99px;background:#e4ecf3;overflow:hidden}.bar span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),#16a6a1);transition:width .2s ease}
+    .quiz-card{padding:24px;margin-bottom:16px;scroll-margin-top:86px}
+    .quiz-card.missing{border-color:#e08383;box-shadow:0 0 0 3px rgba(165,43,50,.11)}
+    .q-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+    .q-number{display:grid;place-items:center;flex:0 0 40px;height:34px;border-radius:9px;color:#fff;background:var(--blue);font-weight:900}
+    .tag{padding:5px 9px;border-radius:99px;color:var(--blue);background:var(--sky);font-size:.75rem;font-weight:850;letter-spacing:.04em}
+    fieldset{margin:0;padding:0;border:0} legend{width:100%;margin:0 0 15px;font:700 1.08rem/1.45 Georgia,serif}
+    .options{display:grid;gap:9px}
+    .option{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;padding:12px 14px;border:1px solid #ccd7e1;border-radius:12px;background:#fbfdff;cursor:pointer;transition:.15s ease}
+    .option:hover{border-color:#79a9cf;background:var(--sky)}
+    .option input{position:absolute;opacity:0;pointer-events:none}
+    .letter{display:grid;place-items:center;width:28px;height:28px;border:1px solid #aebdca;border-radius:50%;color:var(--muted);background:#fff;font-size:.82rem;font-weight:900}
+    .option:has(input:checked){border-color:var(--blue);background:var(--sky);box-shadow:0 0 0 2px rgba(20,90,145,.10)}
+    .option:has(input:checked) .letter{color:#fff;border-color:var(--blue);background:var(--blue)}
+    .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:26px 0}
+    .btn{min-height:46px;padding:11px 19px;border:1px solid #b9c7d3;border-radius:11px;color:var(--navy);background:#fff;font-weight:800}
+    .btn:hover,.btn:focus-visible{outline:none;border-color:var(--blue);background:var(--sky)}
+    .btn.primary{color:#fff;border-color:var(--blue);background:var(--blue)}.btn.primary:hover{background:#0e4777}
+    .form-alert{display:none;margin:0 auto 16px;max-width:680px;padding:12px 16px;border:1px solid #e7a1a6;border-radius:11px;color:var(--red);background:var(--red-soft);text-align:center;font-weight:750}
+    .result-card{display:none;overflow:hidden}
+    .result-top{padding:30px;color:#fff;background:linear-gradient(135deg,var(--navy),var(--blue));text-align:center}
+    .result-top.fail{background:linear-gradient(135deg,#69252a,var(--red))}
+    .score{margin:6px 0;font:900 clamp(4rem,12vw,7.5rem)/.95 Georgia,serif;letter-spacing:-.07em}.score small{font-size:.25em;letter-spacing:0}
+    .result-message{margin:8px auto 0;max-width:640px;font-size:1.12rem}
+    .result-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+    .result-meta div{padding:15px;background:#fff;text-align:center}.result-meta small{display:block;color:var(--muted)}.result-meta b{color:var(--navy)}
+    .review{padding:24px}.review h2{margin-top:0;color:var(--navy);font:750 1.45rem Georgia,serif}
+    .review-item{margin:12px 0;padding:15px;border-left:5px solid;border-radius:5px 12px 12px 5px}
+    .review-item.correct{color:var(--green);border-color:#62b98e;background:var(--green-soft)}
+    .review-item.incorrect{color:var(--red);border-color:#dd7c82;background:var(--red-soft)}
+    .review-item p{margin:5px 0}.review-item .why{color:var(--ink);font-size:.91rem}
+    .print-note{display:none}.source{margin:28px auto 0;max-width:850px;color:var(--muted);font-size:.82rem;text-align:center}.source a{color:var(--blue)}
+    #confetti{position:fixed;inset:0;z-index:100;pointer-events:none}
+    footer{padding:25px 18px 40px;color:var(--muted);text-align:center}footer strong{color:var(--navy)}
+    @media(max-width:720px){.notice-grid,.result-meta{grid-template-columns:1fr 1fr}.fields{grid-template-columns:1fr}.quiz-card{padding:18px}.option{grid-template-columns:29px 1fr;padding:11px}.wrap{padding:0 12px}}
+    @media print{
+      @page{size:letter;margin:1.35cm}
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+      body{background:#fff;font-size:9.5pt;line-height:1.35}
+      .hero,.notice,.student-card,.sticky-progress,#quizForm>.quiz-card,#quizForm>.actions,.form-alert,.source,#confetti,footer{display:none!important}
+      .wrap{max-width:none;margin:0;padding:0}.result-card{display:none!important;margin:0;border:0;box-shadow:none}body.result-ready .result-card{display:block!important}
+      .result-top{padding:18px}.score{font-size:48pt}.result-message{font-size:11pt}.result-meta div{padding:9px}
+      .review{padding:14px 0 0}.review-item{padding:8px 10px;margin:7px 0;break-inside:avoid}.review-item .why{font-size:8.5pt}
+      .actions{display:none!important}.print-note{display:block;margin-top:9px;font-size:8pt;text-align:center}.result-card{overflow:visible}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Evaluación interactiva · Ley del Impuesto al Valor Agregado</p>
+      <h1>Artículos 4, 5 y 5-A</h1>
+      <div class="byline"><span>Autor: Dr. Benjamín Díaz Villanueva</span><span>Uso didáctico</span></div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="notice" id="instructions">
+      <strong>Instrucciones.</strong> Responda las 25 preguntas y presione “Finalizar intento”. La evaluación permite <strong>un solo intento por navegador</strong>. La calificación es de 0 a 10; una calificación <strong>mayor de 5.0 es aprobatoria</strong> y 5.0 o menos es reprobatoria.
+      <div class="notice-grid">
+        <div class="metric"><b>25</b>preguntas</div><div class="metric"><b>A–D</b>cuatro opciones</div><div class="metric"><b>1</b>intento</div><div class="metric"><b>0–10</b>calificación</div>
+      </div>
+    </section>
+    <form id="quizForm" novalidate>
+      <section class="student-card" id="studentCard">
+        <h2 class="section-title">Datos del estudiante</h2>
+        <div class="fields">
+          <label class="field">Nombre completo<input id="studentName" name="studentName" type="text" maxlength="100" required></label>
+          <label class="field">Matrícula<input id="studentId" name="studentId" type="text" maxlength="30" required></label>
+          <label class="field">Grupo<input id="studentGroup" name="studentGroup" type="text" maxlength="30" required></label>
+        </div>
+      </section>
+      <div class="sticky-progress" id="progressBox"><div class="progress-row"><span>Avance</span><span id="progressText">0 de 25 respondidas</span></div><div class="bar"><span id="progressBar"></span></div></div>
+      <div id="questions"></div>
+      <div class="form-alert" id="formAlert" role="alert"></div>
+      <div class="actions"><button class="btn primary" type="submit">Finalizar intento</button></div>
+    </form>
+    <section class="result-card" id="resultCard" aria-live="polite">
+      <div class="result-top" id="resultTop">
+        <p class="eyebrow">Resultado definitivo · Un intento</p>
+        <div class="score"><span id="scoreValue">0.0</span><small>/10</small></div>
+        <h2 id="resultTitle">Resultado</h2>
+        <p class="result-message" id="resultMessage"></p>
+      </div>
+      <div class="result-meta">
+        <div><small>Estudiante</small><b id="resultName"></b></div>
+        <div><small>Matrícula / Grupo</small><b id="resultIdentity"></b></div>
+        <div><small>Aciertos</small><b id="resultCorrect"></b></div>
+        <div><small>Fecha</small><b id="resultDate"></b></div>
+      </div>
+      <div class="review"><h2>Revisión del intento</h2><div id="reviewList"></div><p class="print-note">Autor: Dr. Benjamín Díaz Villanueva · Uso didáctico · Evaluación LIVA, artículos 4, 5 y 5-A</p></div>
+      <div class="actions"><button class="btn primary" id="printResult" type="button">Imprimir / Guardar resultado en PDF</button></div>
+    </section>
+    <p class="source">Fuente normativa: <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf" target="_blank" rel="noopener">Ley del Impuesto al Valor Agregado, Cámara de Diputados</a>. Texto vigente consultado el 22 de julio de 2026; última reforma publicada en el DOF el 12-11-2021.</p>
+  </main>
+  <footer><strong>Dr. Benjamín Díaz Villanueva</strong> · Uso didáctico</footer>
+  <script>
+    const QUESTIONS = [{"article":"Artículo 4","q":"¿En qué consiste el acreditamiento del IVA?","options":["En sumar el impuesto trasladado al impuesto causado.","En restar el impuesto acreditable de la cantidad que resulte de aplicar la tasa correspondiente.","En disminuir las deducciones autorizadas del ingreso acumulable.","En compensar automáticamente el IVA contra cualquier impuesto federal."],"answer":1,"why":"El artículo 4 define el acreditamiento como la resta del impuesto acreditable a la cantidad que resulte de aplicar la tasa correspondiente."},{"article":"Artículo 4","q":"Para efectos del artículo 4, ¿qué se entiende por impuesto acreditable?","options":["Únicamente el IVA cobrado a los clientes durante el ejercicio.","Todo impuesto federal pagado durante el mes.","El IVA trasladado al contribuyente y el que él pagó por la importación de bienes o servicios, en el mes correspondiente.","Solamente el IVA retenido por instituciones de crédito."],"answer":2,"why":"La definición comprende el IVA trasladado al contribuyente y el pagado por él con motivo de la importación, en el mes de que se trate."},{"article":"Artículo 4","q":"¿Cuál es la regla general sobre la transmisión del derecho al acreditamiento?","options":["Es personal y no puede transmitirse por acto entre vivos, excepto en caso de fusión.","Puede cederse libremente mediante contrato privado.","Sólo puede transmitirse por compraventa de activos.","Siempre se transmite en una escisión."],"answer":0,"why":"El derecho al acreditamiento es personal; la excepción expresa prevista por el artículo 4 es la fusión."},{"article":"Artículo 4","q":"Un contribuyente determina $160,000 de IVA causado y cuenta con $100,000 de impuesto acreditable. Conforme al artículo 4, ¿cuál es la cantidad resultante después del acreditamiento?","options":["$260,000.","$100,000.","$60,000.","$160,000."],"answer":2,"why":"El acreditamiento consiste en restar el impuesto acreditable al impuesto causado: $160,000 − $100,000 = $60,000."},{"article":"Artículo 4","q":"En un mismo mes, a un contribuyente le trasladan $16,000 de IVA y él paga $32,000 de IVA por la importación de maquinaria. Antes de verificar los requisitos del artículo 5, ¿qué importe integra el impuesto acreditable conforme a la definición del artículo 4?","options":["$48,000.","$32,000.","$16,000.","$0."],"answer":0,"why":"La definición del artículo 4 comprende tanto el IVA trasladado al contribuyente como el pagado por él en la importación durante el mes: $16,000 + $32,000 = $48,000."},{"article":"Artículo 5","q":"¿Con qué criterio relaciona la fracción I la estricta indispensabilidad de las erogaciones?","options":["Con su deducibilidad para fines del ISR.","Con que el proveedor sea persona moral.","Con que el pago se realice únicamente en efectivo.","Con la antigüedad del contribuyente."],"answer":0,"why":"Se consideran estrictamente indispensables las erogaciones deducibles para fines del ISR, aun si no se está obligado al pago de ese impuesto."},{"article":"Artículo 5","q":"Si una erogación es parcialmente deducible para ISR, ¿cómo se acredita el IVA correspondiente?","options":["Se acredita siempre en su totalidad.","No se acredita cantidad alguna.","Se acredita en la misma proporción en que la erogación sea deducible para ISR.","Se acredita sólo después de cinco años."],"answer":2,"why":"La fracción I limita el acreditamiento a la proporción en que la erogación resulte deducible para ISR."},{"article":"Artículo 5","q":"¿Qué exige la fracción II respecto del IVA en los comprobantes fiscales?","options":["Que se incluya únicamente en el total del comprobante.","Que sea trasladado expresamente al contribuyente y conste por separado.","Que se anote sólo en la contabilidad interna.","Que se pague exclusivamente con cheque nominativo."],"answer":1,"why":"El IVA debe trasladarse de forma expresa al contribuyente y constar por separado en el comprobante fiscal."},{"article":"Artículo 5","q":"En la importación de mercancías, ¿qué requisito documental establece la fracción II?","options":["Una carta del proveedor extranjero sin datos del importador.","Un estado de cuenta bancario del agente aduanal.","Una factura global emitida al público en general.","Un pedimento a nombre del contribuyente en el que conste el pago del IVA correspondiente."],"answer":3,"why":"El pedimento debe estar a nombre del contribuyente y mostrar el pago del IVA de la importación."},{"article":"Artículo 5","q":"En servicios u obras especializadas, ¿cuál es el plazo máximo para que el contratista entregue al contratante la documentación de IVA requerida?","options":["El último día del mes siguiente a aquel en que el contratante efectuó el pago.","Dentro de los cinco días posteriores a la firma del contrato.","Al cierre del ejercicio fiscal.","En cualquier momento antes de una revisión del SAT."],"answer":0,"why":"La documentación debe entregarse, como máximo, el último día del mes siguiente al pago de la contraprestación y del IVA trasladado."},{"article":"Artículo 5","q":"¿Qué debe hacer el contratante si acreditó IVA de servicios especializados y no obtiene la documentación dentro del plazo legal?","options":["Conservar el acreditamiento sin modificación.","Solicitar automáticamente la devolución del IVA.","Presentar una declaración complementaria para disminuir los montos acreditados por ese concepto.","Trasladar la obligación al trabajador especializado."],"answer":2,"why":"La fracción II ordena presentar declaración complementaria y disminuir el IVA que se hubiera acreditado por ese concepto."},{"article":"Artículo 5","q":"¿Cuándo debe estar pagado el IVA trasladado para cumplir la fracción III?","options":["Antes de emitir el CFDI.","Efectivamente pagado en el mes de que se trate.","A más tardar al cierre del ejercicio siguiente.","Sólo cuando lo solicite la autoridad."],"answer":1,"why":"La fracción III exige que el IVA trasladado haya sido efectivamente pagado en el mes correspondiente."},{"article":"Artículo 5","q":"Una vez enterado el IVA retenido conforme a la fracción IV, ¿cuándo puede acreditarse?","options":["En la misma declaración en que se efectuó la retención, antes de enterarla.","Únicamente en la declaración anual.","Dos ejercicios después del entero.","En la declaración mensual siguiente a aquella en la que se efectuó el entero de la retención."],"answer":3,"why":"El impuesto retenido y enterado se acredita en la declaración de pago mensual siguiente a la declaración en la que se enteró."},{"article":"Artículo 5","q":"Si un bien o servicio se utiliza exclusivamente en actividades gravadas o a tasa del 0%, ¿qué ocurre con el IVA conforme a la fracción V, inciso a)?","options":["Es acreditable en su totalidad.","No es acreditable.","Sólo se acredita el 50%.","Debe diferirse durante sesenta meses."],"answer":0,"why":"El IVA relacionado exclusivamente con actividades gravadas o a tasa del 0% es acreditable en su totalidad."},{"article":"Artículo 5","q":"¿Qué tratamiento recibe el IVA de erogaciones utilizadas exclusivamente en actividades por las que no se deba pagar el impuesto, incluidas las del artículo 4-A?","options":["Se acredita en el mes siguiente.","Se acredita según la proporción del ejercicio anterior.","No es acreditable.","Se acredita siempre al 100%."],"answer":2,"why":"La fracción V, inciso b), dispone que el IVA destinado exclusivamente a esas actividades no será acreditable."},{"article":"Artículo 5","q":"Cuando bienes, servicios o arrendamientos se usan indistintamente en actividades gravadas, a tasa del 0%, exentas y no objeto, ¿cómo procede el acreditamiento?","options":["Con base únicamente en los ingresos exentos.","En la proporción que representen las actividades gravadas y a tasa del 0% respecto del valor total de las actividades del mes, incluyendo las del artículo 4-A.","Por partes iguales entre todas las actividades.","No procede en ningún caso."],"answer":1,"why":"El inciso c) establece una proporción mensual: actividades gravadas y a tasa del 0% entre el total de actividades consideradas por la disposición."},{"article":"Artículo 5","q":"¿Cómo se acredita el IVA de una inversión utilizada indistintamente en actividades gravadas o a tasa del 0% y en actividades por las que no se paga IVA?","options":["Siempre en su totalidad y sin ajustes posteriores.","Únicamente cuando se venda la inversión.","No se acredita durante la vida útil del activo.","En la proporción correspondiente al mes y, en su caso, aplicando el ajuste del artículo 5-A."],"answer":3,"why":"El numeral 3 del inciso d) ordena aplicar la proporción del mes y, cuando corresponda, el ajuste previsto por el artículo 5-A."},{"article":"Artículo 5","q":"Quien adopta el acreditamiento proporcional del numeral 3 para inversiones debe aplicarlo a todas las inversiones que adquiera o importe durante un periodo mínimo de:","options":["Sesenta meses.","Doce meses.","Veinticuatro meses.","Diez años."],"answer":0,"why":"La disposición exige mantener este procedimiento para todas las inversiones adquiridas o importadas durante, al menos, sesenta meses."},{"article":"Artículo 5","q":"¿Cuándo debe aplicarse el ajuste del artículo 5-A si una inversión que se destinaba exclusivamente a actividades gravadas o exclusivamente a actividades no gravadas cambia de destino?","options":["Al cierre del ejercicio siguiente.","Únicamente cuando la inversión sea enajenada.","Después de transcurridos sesenta meses.","En el mes en que deje de destinarse exclusivamente a las actividades previstas originalmente."],"answer":3,"why":"El artículo 5, fracción V, inciso d), numeral 4, ordena aplicar el ajuste en el mismo mes en que cambie el destino exclusivo de la inversión."},{"article":"Artículo 5","q":"¿Qué ocurre con las inversiones cuyo acreditamiento se realizó conforme al artículo 5-B?","options":["También deben someterse simultáneamente al procedimiento mensual del numeral 3.","No les resulta aplicable el procedimiento establecido en el primer párrafo del numeral 3.","Pierden automáticamente todo derecho al acreditamiento.","Deben acreditarse siempre en su totalidad."],"answer":1,"why":"El artículo 5 dispone que a las inversiones acreditadas conforme al artículo 5-B no les será aplicable el procedimiento del primer párrafo del numeral 3."},{"article":"Artículo 5-A","q":"¿Cuándo se activa el ajuste del artículo 5-A para inversiones de uso indistinto?","options":["Cuando cambia exactamente 1% la tasa general del impuesto.","Cuando la inversión cumple un año de uso, sin importar la proporción.","Siempre que exista saldo a favor.","Cuando, en meses posteriores al acreditamiento, la proporción prevista cambia en más de un 3%."],"answer":3,"why":"El supuesto de aplicación es una modificación superior al 3% en la proporción usada para el acreditamiento de la inversión."},{"article":"Artículo 5-A","q":"Si disminuye la proporción de actividades gravadas o a tasa del 0% respecto del total, ¿qué debe hacer el contribuyente?","options":["Reintegrar el acreditamiento que corresponda, actualizado desde el mes del acreditamiento hasta el mes del ajuste.","Incrementar el acreditamiento sin actualización.","Cancelar la inversión en su contabilidad.","Esperar hasta la declaración anual sin efectuar ajuste."],"answer":0,"why":"La fracción I del artículo 5-A obliga a reintegrar el acreditamiento correspondiente y actualizarlo."},{"article":"Artículo 5-A","q":"Si aumenta la proporción de actividades gravadas o a tasa del 0% respecto del total, ¿qué permite el artículo 5-A?","options":["Reintegrar todo el IVA acreditado originalmente.","No realizar modificación alguna.","Incrementar el acreditamiento que corresponda, debidamente actualizado.","Aplicar el incremento únicamente al ISR."],"answer":2,"why":"La fracción II permite incrementar el acreditamiento y actualizarlo desde el mes en que se realizó el acreditamiento."},{"article":"Artículo 5-A","q":"En el procedimiento de ajuste, después de aplicar al IVA de la inversión el porcentaje máximo de deducción previsto por la LISR, ¿qué se hace con el resultado?","options":["Se multiplica por doce.","Se divide entre doce.","Se divide entre el número de trabajadores.","Se aplica directamente como saldo a favor anual."],"answer":1,"why":"Tanto para disminución como para aumento, el monto obtenido tras aplicar el porcentaje máximo de deducción se divide entre doce."},{"article":"Artículo 5-A","q":"¿Cómo se obtiene el factor de actualización previsto en el artículo 5-A?","options":["Dividiendo el tipo de cambio del mes reciente entre el del mes anterior.","Multiplicando la inflación anual por la tasa del IVA.","Dividiendo el INPC del mes más antiguo entre el del mes más reciente.","Dividiendo el INPC del mes más reciente del periodo entre el INPC del mes más antiguo del mismo periodo."],"answer":3,"why":"La actualización utiliza el INPC del mes más reciente como numerador y el INPC del mes más antiguo como denominador."}];
+    const STORAGE_KEY = 'liva_4_5_5a_intento_v2';
+    const letters = ['A','B','C','D'];
+    const form = document.getElementById('quizForm');
+    const questionsBox = document.getElementById('questions');
+    const alertBox = document.getElementById('formAlert');
+
+    function safe(value){
+      return String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    }
+
+    function renderQuestions(){
+      questionsBox.innerHTML = QUESTIONS.map((item,index) => `
+        <section class="quiz-card" id="question-${index+1}">
+          <div class="q-head"><span class="q-number">${index+1}</span><span class="tag">${safe(item.article)}</span></div>
+          <fieldset><legend>${safe(item.q)}</legend><div class="options">
+            ${item.options.map((option,optIndex) => `<label class="option"><input type="radio" name="q${index}" value="${optIndex}"><span class="letter">${letters[optIndex]}</span><span>${safe(option)}</span></label>`).join('')}
+          </div></fieldset>
+        </section>`).join('');
+    }
+
+    function updateProgress(){
+      const answered = QUESTIONS.filter((_,i) => form.querySelector(`input[name="q${i}"]:checked`)).length;
+      document.getElementById('progressText').textContent = `${answered} de ${QUESTIONS.length} respondidas`;
+      document.getElementById('progressBar').style.width = `${answered / QUESTIONS.length * 100}%`;
+    }
+
+    function formatDate(iso){
+      return new Intl.DateTimeFormat('es-MX',{dateStyle:'long',timeStyle:'short'}).format(new Date(iso));
+    }
+
+    function showResult(record, celebrate=false){
+      document.body.classList.add('result-ready');
+      document.getElementById('instructions').style.display = 'none';
+      form.style.display = 'none';
+      const card = document.getElementById('resultCard');
+      const passed = record.score > 5;
+      document.getElementById('resultTop').classList.toggle('fail',!passed);
+      document.getElementById('scoreValue').textContent = record.score.toFixed(1);
+      document.getElementById('resultTitle').textContent = passed ? '¡Felicidades, evaluación aprobada!' : 'Resultado no aprobatorio';
+      document.getElementById('resultMessage').textContent = passed
+        ? 'Ha demostrado un buen dominio de las reglas de acreditamiento del IVA. Continúe fortaleciendo su aprendizaje.'
+        : 'Le invitamos a seguir estudiando los artículos 4, 5 y 5-A de la LIVA y revisar cuidadosamente las respuestas correctas.';
+      document.getElementById('resultName').textContent = record.name;
+      document.getElementById('resultIdentity').textContent = `${record.studentId} · ${record.group}`;
+      document.getElementById('resultCorrect').textContent = `${record.correct} de ${QUESTIONS.length}`;
+      document.getElementById('resultDate').textContent = formatDate(record.finishedAt);
+      document.getElementById('reviewList').innerHTML = QUESTIONS.map((item,index) => {
+        const selected = record.answers[index];
+        const ok = selected === item.answer;
+        return `<article class="review-item ${ok ? 'correct' : 'incorrect'}">
+          <p><strong>${index+1}. ${safe(item.q)}</strong></p>
+          <p>Respuesta seleccionada: <b>${letters[selected]}. ${safe(item.options[selected])}</b></p>
+          ${ok ? '<p>✓ Respuesta correcta</p>' : `<p>Respuesta correcta: <b>${letters[item.answer]}. ${safe(item.options[item.answer])}</b></p>`}
+          <p class="why">${safe(item.why)}</p>
+        </article>`;
+      }).join('');
+      card.style.display = 'block';
+      if(celebrate) launchConfetti();
+      scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function finalize(event){
+      event.preventDefault();
+      const name = document.getElementById('studentName').value.trim();
+      const studentId = document.getElementById('studentId').value.trim();
+      const group = document.getElementById('studentGroup').value.trim();
+      const missingCard = QUESTIONS.map((_,i) => document.getElementById(`question-${i+1}`)).find((card,i) => !form.querySelector(`input[name="q${i}"]:checked`));
+      document.querySelectorAll('.quiz-card').forEach(card => card.classList.remove('missing'));
+      if(!name || !studentId || !group){
+        alertBox.textContent = 'Complete nombre, matrícula y grupo antes de finalizar.'; alertBox.style.display='block';
+        document.getElementById('studentCard').scrollIntoView({behavior:'smooth',block:'center'}); return;
+      }
+      if(missingCard){
+        missingCard.classList.add('missing'); alertBox.textContent='Debe responder las 25 preguntas antes de finalizar el único intento.'; alertBox.style.display='block';
+        missingCard.scrollIntoView({behavior:'smooth',block:'center'}); return;
+      }
+      const confirmed = confirm('¿Desea finalizar? Esta acción registrará su único intento y ya no podrá modificar las respuestas.');
+      if(!confirmed) return;
+      const answers = QUESTIONS.map((_,i) => Number(form.querySelector(`input[name="q${i}"]:checked`).value));
+      const correct = answers.reduce((sum,value,i) => sum + (value === QUESTIONS[i].answer ? 1 : 0),0);
+      const record = {name,studentId,group,answers,correct,score:Number((correct / QUESTIONS.length * 10).toFixed(1)),finishedAt:new Date().toISOString(),attemptId:crypto.randomUUID ? crypto.randomUUID() : String(Date.now())};
+      try{localStorage.setItem(STORAGE_KEY,JSON.stringify(record));}catch(error){console.warn('No fue posible guardar el intento de forma persistente.',error)}
+      showResult(record,true);
+    }
+
+    function launchConfetti(){
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const canvas=document.getElementById('confetti'),ctx=canvas.getContext('2d');
+      canvas.width=innerWidth;canvas.height=innerHeight;
+      const colors=['#f0b94b','#145a91','#16a6a1','#dd4761','#7549a8','#42b66c'];
+      const pieces=Array.from({length:180},()=>({x:Math.random()*canvas.width,y:-20-Math.random()*canvas.height*.4,w:5+Math.random()*7,h:8+Math.random()*9,vx:-2+Math.random()*4,vy:2.5+Math.random()*4,r:Math.random()*6.28,vr:-.12+Math.random()*.24,c:colors[Math.floor(Math.random()*colors.length)]}));
+      const start=performance.now();
+      function frame(now){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});if(now-start<4200)requestAnimationFrame(frame);else ctx.clearRect(0,0,canvas.width,canvas.height)}
+      requestAnimationFrame(frame);
+    }
+
+    renderQuestions();
+    form.addEventListener('change',updateProgress);
+    form.addEventListener('submit',finalize);
+    document.getElementById('printResult').addEventListener('click',()=>window.print());
+    addEventListener('resize',()=>{const c=document.getElementById('confetti');c.width=innerWidth;c.height=innerHeight});
+    let saved=null;try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY));}catch(error){saved=null}
+    if(saved && Array.isArray(saved.answers) && saved.answers.length===QUESTIONS.length){showResult(saved,false)}
+  </script>
+</body>
+</html>
