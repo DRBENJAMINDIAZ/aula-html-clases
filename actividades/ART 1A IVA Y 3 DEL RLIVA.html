@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16324f">
+  <meta name="description" content="Explicación interactiva del artículo 1-A de la LIVA y su correlación con el artículo 3 del RLIVA.">
+  <title>Artículo 1-A LIVA y Artículo 3 RLIVA | Material didáctico</title>
+  <style>
+    :root{--ink:#17212b;--muted:#5b6875;--paper:#fffdf8;--canvas:#f3efe7;--navy:#16324f;--navy2:#234f74;--law:#0b5fa5;--law-bg:#eaf5ff;--exp:#8a4b08;--exp-bg:#fff3df;--rule:#d8d1c4;--green:#147a5b;--green-bg:#eaf8f2;--red:#b63c34;--shadow:0 18px 46px rgba(23,33,43,.12);--radius:22px;--fs:16px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;font:var(--fs)/1.68 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 3%,#dfeef6 0,transparent 27%),radial-gradient(circle at 92% 8%,#f4dfb7 0,transparent 25%),var(--canvas)}
+    button,input,select{font:inherit}button{cursor:pointer}.skip{position:absolute;left:-9999px;top:0}.skip:focus{left:16px;top:12px;z-index:999;background:#fff;padding:10px 16px;border-radius:10px}.top-progress{position:fixed;inset:0 0 auto;height:4px;background:transparent;z-index:100}.top-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#e4a11b,#42bfa0)}
+    header{position:relative;color:#fff;background:linear-gradient(135deg,#102b45 0%,#1f4e70 64%,#276a76 100%);overflow:hidden}.hero{max-width:1200px;margin:auto;padding:64px 24px 52px;position:relative}.hero:after{content:"1-A";position:absolute;right:18px;bottom:-90px;font:900 clamp(150px,26vw,330px)/1 Georgia,serif;color:rgba(255,255,255,.055);pointer-events:none}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}.hero h1{max-width:900px;margin:20px 0 14px;font:700 clamp(2.5rem,6vw,5.3rem)/.98 Georgia,"Times New Roman",serif;letter-spacing:-.035em}.hero h1 span{color:#ffd47a}.hero p{max-width:740px;margin:0;color:#dceaf2;font-size:1.08rem}.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.hero-meta span{background:rgba(3,17,30,.24);padding:8px 12px;border-radius:10px;font-size:.86rem}
+    .toolbar{position:sticky;top:0;z-index:90;background:rgba(255,253,248,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);box-shadow:0 8px 22px rgba(23,33,43,.07)}.toolbar-inner{max-width:1200px;margin:auto;padding:9px 18px;display:flex;align-items:center;gap:8px;overflow-x:auto}.navbtn,.toolbtn{border:1px solid #d4cec2;background:#fff;color:var(--navy);padding:8px 12px;border-radius:999px;white-space:nowrap;font-weight:700;font-size:.83rem}.navbtn:hover,.navbtn.active,.toolbtn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}.tools{margin-left:auto;display:flex;gap:6px}.toolbtn{width:38px;height:38px;padding:0;font-size:1rem}.toolbtn.print{width:auto;padding:0 12px}
+    main{max-width:1200px;margin:auto;padding:34px 22px 80px}.section{margin:0 0 56px}.section-head{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;margin-bottom:22px}.section-no{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:var(--navy);color:#fff;font:700 1.2rem Georgia,serif}.section h2{margin:0;font:700 clamp(1.75rem,3.5vw,2.65rem)/1.1 Georgia,serif;color:var(--navy)}.section-head p{grid-column:2;margin:7px 0 0;color:var(--muted)}
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.tag{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 11px;font-size:.82rem;font-weight:800}.tag:before{content:"";width:10px;height:10px;border-radius:50%}.tag.law{background:var(--law-bg);color:var(--law)}.tag.law:before{background:var(--law)}.tag.exp{background:var(--exp-bg);color:var(--exp)}.tag.exp:before{background:var(--exp)}.tag.rel{background:var(--green-bg);color:var(--green)}.tag.rel:before{background:var(--green)}
+    .concept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.concept{background:var(--paper);border:1px solid var(--rule);border-radius:18px;padding:19px;box-shadow:0 8px 18px rgba(23,33,43,.045)}.concept b{display:block;color:var(--navy);font:700 1.12rem Georgia,serif;margin-bottom:7px}.concept p{margin:0;color:var(--muted);font-size:.92rem}.arrow-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;background:#102b45;color:#fff;padding:22px;border-radius:var(--radius);margin-top:16px}.flow-node{text-align:center;padding:14px;background:rgba(255,255,255,.09);border-radius:14px}.flow-node strong{display:block;color:#ffd47a}.flow-arrow{font-size:1.5rem;color:#8ed8c8}
+    details.legal-card{background:var(--paper);border:1px solid var(--rule);border-radius:18px;margin:12px 0;overflow:hidden;box-shadow:0 7px 20px rgba(23,33,43,.045)}details.legal-card[open]{box-shadow:var(--shadow)}summary{list-style:none;display:flex;align-items:center;gap:12px;padding:17px 19px;font-weight:800;color:var(--navy);cursor:pointer}summary::-webkit-details-marker{display:none}.badge{flex:0 0 auto;display:grid;place-items:center;min-width:38px;height:34px;padding:0 9px;border-radius:10px;color:#fff;background:var(--navy2);font-size:.8rem}.summary-title{flex:1}.chev{transition:.25s;font-size:1.15rem}details[open] .chev{transform:rotate(180deg)}.card-body{padding:0 18px 19px;display:grid;grid-template-columns:1.08fr .92fr;gap:14px}.law-text,.explanation,.example{border-radius:15px;padding:17px}.law-text{background:var(--law-bg);border-left:5px solid var(--law);color:#0b4878}.law-text small,.explanation small,.example small{display:block;margin-bottom:7px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.law-text p,.explanation p,.example p{margin:0}.law-text p+p,.explanation p+p{margin-top:10px}.explanation{background:var(--exp-bg);border-left:5px solid #d98523;color:#683a0a}.example{grid-column:1/-1;background:var(--green-bg);border-left:5px solid var(--green);color:#0c5842}.callout{background:#fff;border:1px dashed #b8ad9d;border-radius:14px;padding:15px;margin-top:12px}.callout strong{color:var(--navy)}
+    .correlation{display:grid;grid-template-columns:260px 1fr;gap:15px}.case-list{display:flex;flex-direction:column;gap:8px}.case-btn{border:1px solid var(--rule);background:var(--paper);color:var(--navy);padding:13px 14px;border-radius:13px;text-align:left;font-weight:800}.case-btn:hover,.case-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}.case-panel{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:22px;min-height:310px;box-shadow:var(--shadow)}.case-panel h3{margin:0 0 8px;font:700 1.55rem Georgia,serif;color:var(--navy)}.mapping{display:grid;grid-template-columns:1fr 55px 1fr;gap:10px;align-items:stretch;margin:16px 0}.mapbox{border-radius:15px;padding:16px}.mapbox.l{background:var(--law-bg);color:#0b4878}.mapbox.r{background:var(--green-bg);color:#0c5842}.mapbox b{display:block;margin-bottom:5px}.map-arrow{display:grid;place-items:center;color:var(--green);font-size:1.7rem}.verdict{padding:12px 14px;border-radius:12px;background:#f4f0e8;font-weight:800}.verdict strong{color:var(--red)}
+    .calculator{background:linear-gradient(140deg,#102b45,#1d5164);border-radius:26px;color:#fff;padding:26px;box-shadow:var(--shadow)}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}.field label{font-size:.85rem;color:#dcecf1;font-weight:800}.field input,.field select{width:100%;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);color:#fff;border-radius:12px;padding:11px 12px;outline:none}.field select option{color:#111}.field input:focus,.field select:focus{border-color:#ffd47a;box-shadow:0 0 0 3px rgba(255,212,122,.18)}.result{background:#fff;color:var(--ink);border-radius:18px;padding:18px}.result-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #e8e2d7}.result-row:last-child{border:0}.result-row.total{font-size:1.15rem;font-weight:900;color:var(--navy)}.result-note{margin:12px 0 0;color:#d7e7eb;font-size:.82rem}.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef5f6;color:#164b55;border-radius:10px;padding:10px;margin-top:12px;font-size:.84rem}
+    .quiz{display:grid;gap:12px}.question{background:var(--paper);border:1px solid var(--rule);border-radius:18px;padding:19px}.question h3{font-size:1rem;margin:0 0 12px}.options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.option{border:1px solid #d7d0c5;background:#fff;padding:10px 12px;border-radius:11px;text-align:left}.option:hover{border-color:var(--navy2)}.option.correct{background:#e5f7ef;border-color:var(--green);color:#0d5b44}.option.wrong{background:#fff0ef;border-color:var(--red);color:#8c2822}.feedback{display:none;margin-top:10px;padding:9px 11px;border-radius:10px;background:#f3efe7;font-size:.88rem}.feedback.show{display:block}.scorebox{position:sticky;bottom:14px;margin:18px auto 0;max-width:420px;background:var(--navy);color:#fff;border-radius:999px;padding:11px 16px;text-align:center;box-shadow:var(--shadow);font-weight:900}
+    .sources{background:#ece7dd;border-radius:20px;padding:21px}.sources a{color:var(--law);font-weight:800}.warning{border-left:5px solid #c7821d;background:#fff5e4;padding:14px 16px;border-radius:12px;margin-top:14px}.footer{background:#102b45;color:#dce7ee;text-align:center;padding:28px 20px}.footer strong{display:block;color:#fff;font:700 1.2rem Georgia,serif}.footer small{display:block;margin-top:6px}.dark{--ink:#e8edf1;--muted:#b7c2ca;--paper:#162532;--canvas:#0d1821;--rule:#344755;--law-bg:#102f47;--exp-bg:#3b2b16;--green-bg:#12372e}.dark body{background:radial-gradient(circle at 8% 3%,#18384b 0,transparent 27%),var(--canvas)}.dark .toolbar{background:rgba(13,24,33,.94)}.dark .navbtn,.dark .toolbtn,.dark .case-btn,.dark .option{background:#162532;color:#e9f0f4;border-color:#40515e}.dark .navbtn:hover,.dark .navbtn.active,.dark .toolbtn:hover,.dark .case-btn:hover,.dark .case-btn.active{background:#d7a94b;color:#17212b}.dark .result{background:#e9eef1}.dark .verdict,.dark .feedback,.dark .sources{background:#22333f}.dark .formula{background:#dceced}.dark .warning{background:#3b2b16}
+    @media(max-width:820px){.hero{padding-top:45px}.concept-grid{grid-template-columns:1fr 1fr}.card-body,.calc-grid{grid-template-columns:1fr}.example{grid-column:auto}.correlation{grid-template-columns:1fr}.case-list{flex-direction:row;overflow-x:auto}.case-btn{min-width:190px}.mapping{grid-template-columns:1fr}.map-arrow{transform:rotate(90deg)}.arrow-flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg);text-align:center}.options{grid-template-columns:1fr}.tools{margin-left:0}.toolbar-inner{align-items:center}.toolbtn.print{display:none}}@media(max-width:520px){:root{--fs:15px}.hero{padding-inline:18px}.hero h1{font-size:2.55rem}.hero-meta{display:grid}.concept-grid{grid-template-columns:1fr}.section-head{grid-template-columns:40px 1fr}.section-no{width:40px;height:40px}.card-body{padding-inline:12px}.law-text,.explanation,.example{padding:14px}.calculator{padding:18px}main{padding-inline:14px}}
+    @media print{.toolbar,.top-progress,.quiz,.calculator .field,.scorebox{display:none!important}body{background:#fff}.hero{padding:28px;color:#000;background:#fff;border-bottom:3px solid #16324f}.hero h1,.hero h1 span{color:#16324f}.hero p,.hero-meta span{color:#333}.hero-meta span{background:#eee}.section{break-inside:auto;margin-bottom:28px}details.legal-card{break-inside:avoid;box-shadow:none}details.legal-card:not([open]) .card-body{display:grid}.case-list{display:none}.correlation{grid-template-columns:1fr}.case-panel{box-shadow:none}.footer{background:#fff;color:#222;border-top:2px solid #16324f}.footer strong{color:#16324f}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="top-progress" aria-hidden="true"><span id="readProgress"></span></div>
+  <header>
+    <div class="hero">
+      <span class="eyebrow">LIVA · Retenciones · Material interactivo</span>
+      <h1>Artículo <span>1-A</span> de la LIVA</h1>
+      <p>Quién retiene el IVA, cuándo lo hace y cómo el artículo 3 del Reglamento autoriza retenciones menores en casos específicos.</p>
+      <div class="hero-meta"><span>Texto legal + explicación</span><span>Correlación Ley–Reglamento</span><span>Ejemplos y calculadora</span><span>Autoevaluación</span></div>
+    </div>
+  </header>
+
+  <nav class="toolbar" aria-label="Navegación del material">
+    <div class="toolbar-inner">
+      <button class="navbtn active" data-go="panorama">Panorama</button>
+      <button class="navbtn" data-go="art1a">Art. 1-A LIVA</button>
+      <button class="navbtn" data-go="art3">Art. 3 RLIVA</button>
+      <button class="navbtn" data-go="correlacion">Correlación</button>
+      <button class="navbtn" data-go="calculadora">Calculadora</button>
+      <button class="navbtn" data-go="autoevaluacion">Autoevaluación</button>
+      <div class="tools">
+        <button class="toolbtn" id="fontDown" aria-label="Reducir tamaño de texto">A−</button>
+        <button class="toolbtn" id="fontUp" aria-label="Aumentar tamaño de texto">A+</button>
+        <button class="toolbtn" id="theme" aria-label="Cambiar tema">◐</button>
+        <button class="toolbtn print" id="print">Imprimir / PDF</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="contenido">
+    <section class="section" id="panorama">
+      <div class="section-head"><span class="section-no">01</span><div><h2>Primero, la idea central</h2><p>La retención cambia quién entrega una parte del IVA al fisco; no elimina el impuesto ni cambia por sí misma la tasa.</p></div></div>
+      <div class="legend"><span class="tag law">Texto de ley</span><span class="tag exp">Explicación didáctica</span><span class="tag rel">Correlación y aplicación</span></div>
+      <div class="concept-grid">
+        <article class="concept"><b>IVA trasladado</b><p>Es el IVA que el proveedor cobra o desglosa a quien recibe el bien o servicio.</p></article>
+        <article class="concept"><b>Retenedor</b><p>Es el adquirente o receptor que descuenta una parte del IVA y la entera a la autoridad.</p></article>
+        <article class="concept"><b>Proveedor</b><p>Es quien enajena, presta el servicio u otorga el uso o goce temporal del bien.</p></article>
+        <article class="concept"><b>Entero</b><p>Es el pago de la retención al SAT, conforme al momento y plazo previstos por la Ley.</p></article>
+      </div>
+      <div class="arrow-flow" aria-label="Flujo básico de la retención">
+        <div class="flow-node"><strong>1. Operación</strong>El proveedor causa y traslada IVA</div><div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>2. Pago</strong>El receptor paga y retiene cuando procede</div><div class="flow-arrow">→</div>
+        <div class="flow-node"><strong>3. Entero</strong>El retenedor entrega el importe retenido</div>
+      </div>
+      <div class="warning"><strong>Clave:</strong> el artículo 1-A de la LIVA determina <em>quién y en qué supuestos</em> debe retener. Su último párrafo permite que el Reglamento autorice una cantidad menor. El artículo 3 del RLIVA ejerce esa autorización sólo para los casos que enumera.</div>
+    </section>
+
+    <section class="section" id="art1a">
+      <div class="section-head"><span class="section-no">02</span><div><h2>Artículo 1-A de la LIVA</h2><p>Abra cada bloque para estudiar el texto legal y su explicación. El color azul identifica la norma; el ámbar, la interpretación didáctica.</p></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="navbtn" id="openAll">Expandir todo</button><button class="navbtn" id="closeAll">Contraer todo</button></div>
+
+      <details class="legal-card" open><summary><span class="badge">Inicio</span><span class="summary-title">Regla general: obligación de retener</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>Artículo 1-A. Están obligados a efectuar la retención del impuesto que se les traslade, los contribuyentes que se ubiquen en alguno de los siguientes supuestos:</p></div>
+        <div class="explanation"><small>Explicación</small><p>No toda persona que paga una operación retiene IVA. La obligación nace únicamente cuando el receptor reúne las características y realiza una de las operaciones descritas en las fracciones siguientes.</p><div class="callout"><strong>Pregunta guía:</strong> ¿quién recibe la operación, quién la presta y qué tipo de operación es?</div></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">I</span><span class="summary-title">Instituciones de crédito: dación o adjudicación</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>I. Sean instituciones de crédito que adquieran bienes mediante dación en pago o adjudicación judicial o fiduciaria.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La retención procede cuando un banco u otra institución de crédito adquiere un bien para satisfacer una deuda mediante dación en pago, o lo recibe por adjudicación judicial o fiduciaria.</p><p>La calidad del adquirente y la forma jurídica de adquisición son indispensables.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Una institución de crédito recibe un inmueble como dación en pago de un crédito vencido. Si en la operación se traslada IVA, la institución se ubica en esta fracción y debe analizar la retención correspondiente.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">II a)</span><span class="summary-title">Persona moral: honorarios y uso o goce de bienes de persona física</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>II. Sean personas morales que:</p><p>a) Reciban servicios personales independientes, o usen o gocen temporalmente bienes, prestados u otorgados por personas físicas, respectivamente.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Hay dos relaciones: persona moral que recibe servicios independientes de una persona física, y persona moral que renta o usa temporalmente un bien otorgado por una persona física.</p><p>El término “respectivamente” vincula servicios con “prestados” y uso o goce con “otorgados”. El artículo 3, fracción I, del RLIVA reduce la retención a dos terceras partes del IVA efectivamente pagado.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Una sociedad paga $10,000 de honorarios más IVA de $1,600 a una contadora persona física. La retención de IVA es $1,066.67 (dos terceras partes de $1,600). Este cálculo no incluye una posible retención de ISR.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">II b)</span><span class="summary-title">Persona moral: adquisición de desperdicios</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>b) Adquieran desperdicios para ser utilizados como insumo de su actividad industrial o para su comercialización.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La persona moral adquirente retiene cuando compra desperdicios para integrarlos como insumo industrial o para revenderlos. El texto no limita al vendedor a persona física.</p><p>El artículo 3 del RLIVA no incluye este supuesto entre las retenciones menores; por ello, con base sólo en estos artículos, no se aplica ni la regla de dos terceras partes ni la del 4%.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Una recicladora constituida como sociedad compra desperdicio metálico para comercializarlo. Se actualiza la fracción II, inciso b). Debe distinguirse este caso del autotransporte utilizado para mover el desperdicio.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">II c)</span><span class="summary-title">Persona moral: autotransporte terrestre de bienes</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>c) Reciban servicios de autotransporte terrestre de bienes, prestados por personas físicas o morales.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La receptora debe ser persona moral. El transportista puede ser persona física o moral. El artículo 3, fracción II, del RLIVA fija una retención menor equivalente al 4% de la contraprestación efectivamente pagada.</p><p>No debe confundirse “4% de la contraprestación” con “4% del IVA”.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Flete pagado: $25,000; IVA trasladado al 16%: $4,000; retención conforme al RLIVA: $1,000 (4% de $25,000).</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">II d)</span><span class="summary-title">Persona moral: comisiones de persona física</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>d) Reciban servicios prestados por comisionistas, cuando éstos sean personas físicas.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La persona moral receptora retiene cuando el comisionista es persona física. El artículo 3, fracción I, inciso b), del RLIVA autoriza retener dos terceras partes del IVA trasladado y efectivamente pagado.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Una empresa paga comisión de $15,000 más IVA de $2,400 a un comisionista persona física. Retención de IVA: $1,600.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">III</span><span class="summary-title">Bienes tangibles de residentes en el extranjero sin establecimiento permanente</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>III. Sean personas físicas o morales que adquieran bienes tangibles, o los usen o gocen temporalmente, que enajenen u otorguen residentes en el extranjero sin establecimiento permanente en el país.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Aquí el adquirente o usuario puede ser persona física o moral. El proveedor debe ser residente en el extranjero sin establecimiento permanente en México y la operación debe recaer sobre bienes tangibles.</p><p>El artículo 3 del RLIVA no concede una retención reducida a este supuesto. Además, debe revisarse si la operación se realiza en territorio nacional y no confundirla con una importación.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Una empresa mexicana renta en México una máquina propiedad de un residente extranjero sin establecimiento permanente. La fracción III exige analizar la retención de IVA; el artículo 3 no ofrece la reducción de dos terceras partes para este caso.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">IV</span><span class="summary-title">Fracción derogada</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>IV. [Derogada]</p></div>
+        <div class="explanation"><small>Explicación</small><p>La fracción ya no contiene un supuesto vigente. “Derogada” significa que la disposición fue retirada del ordenamiento; no debe reconstruirse ni aplicarse su contenido anterior como obligación actual.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">Excepción</span><span class="summary-title">Contribuyentes obligados exclusivamente por importación</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>No efectuarán la retención a que se refiere este artículo las personas físicas o morales que estén obligadas al pago del impuesto exclusivamente por la importación de bienes.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Es una exclusión expresa. Si la única razón por la que una persona está obligada al IVA es la importación de bienes, no practica las retenciones previstas en este artículo.</p><p>La palabra “exclusivamente” es decisiva: si realiza otras actividades que la convierten en contribuyente del IVA, el análisis puede cambiar.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">Efecto</span><span class="summary-title">Sustitución en la obligación de pago y entero</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>Quienes efectúen la retención a que se refiere este artículo sustituirán al enajenante, prestador de servicio u otorgante del uso o goce temporal de bienes en la obligación de pago y entero del impuesto.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Respecto de la cantidad retenida, el receptor de la operación asume la obligación de pagarla y enterarla. El proveedor no recibe esa parte del IVA; la conserva temporalmente el retenedor para entregarla a la autoridad.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">Momento</span><span class="summary-title">Cuándo retener y cuándo enterar</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>El retenedor efectuará la retención del impuesto en el momento en el que pague el precio o la contraprestación y sobre el monto de lo efectivamente pagado y lo enterará mediante declaración en las oficinas autorizadas, conjuntamente con el pago del impuesto correspondiente al mes en el cual se efectúe la retención o, en su defecto, a más tardar el día 17 del mes siguiente a aquél en el que hubiese efectuado la retención, sin que contra el entero de la retención pueda realizarse acreditamiento, compensación o disminución alguna.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La regla sigue el flujo de efectivo: se retiene al pagar y sólo sobre lo efectivamente pagado. Si hay pago parcial, la retención se determina sobre esa parte.</p><p>El entero acompaña al pago del IVA del mes o, en su defecto, se realiza a más tardar el día 17 del mes siguiente. La retención enterada no puede reducirse mediante acreditamiento, compensación o disminución.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Si una factura se paga 40% en julio y 60% en agosto, la retención se calcula proporcionalmente en cada pago. La parte retenida en julio corresponde al entero del periodo de julio.</p></div>
+      </div></details>
+
+      <details class="legal-card"><summary><span class="badge">Puente</span><span class="summary-title">Facultad reglamentaria para una retención menor</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto de ley</small><p>El Ejecutivo Federal, en el reglamento de esta ley, podrá autorizar una retención menor al total del impuesto causado, tomando en consideración las características del sector o de la cadena productiva de que se trate, el control del cumplimiento de obligaciones fiscales, así como la necesidad demostrada de recuperar con mayor oportunidad el impuesto acreditable.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Este párrafo es el fundamento directo del artículo 3 del RLIVA. La Ley permite al Reglamento reducir el monto retenido, pero no deja al contribuyente elegir libremente un porcentaje.</p><p>La reducción sólo aplica cuando el Reglamento la autoriza expresamente y se cumplen sus condiciones.</p></div>
+        <div class="example"><small>Correlación</small><p>El artículo 3 concreta dos reducciones: dos terceras partes del IVA en ciertos pagos de persona moral a persona física, y 4% de la contraprestación en autotransporte terrestre de bienes.</p></div>
+      </div></details>
+    </section>
+
+    <section class="section" id="art3">
+      <div class="section-head"><span class="section-no">03</span><div><h2>Artículo 3 del RLIVA</h2><p>El Reglamento no crea nuevos sujetos retenedores: reduce la cantidad que retienen ciertas personas morales ya obligadas por el artículo 1-A.</p></div></div>
+
+      <details class="legal-card" open><summary><span class="badge">Inicio</span><span class="summary-title">Alcance de la retención menor</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto reglamentario</small><p>Artículo 3. Para los efectos del artículo 1o.-A, último párrafo de la Ley, las personas morales obligadas a efectuar la retención del impuesto que se les traslade, lo harán en una cantidad menor, en los casos siguientes:</p></div>
+        <div class="explanation"><small>Explicación</small><p>La norma se dirige a personas morales que ya son retenedoras conforme a la Ley. “Cantidad menor” no significa exención: sigue existiendo retención, pero por un importe inferior al total del IVA trasladado.</p></div>
+      </div></details>
+
+      <details class="legal-card" open><summary><span class="badge">I</span><span class="summary-title">Dos terceras partes del IVA</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto reglamentario</small><p>I. La retención se hará por las dos terceras partes del impuesto que se les traslade y que haya sido efectivamente pagado, cuando el impuesto le sea trasladado por personas físicas por las operaciones siguientes:</p><p>a) Prestación de servicios personales independientes;</p><p>b) Prestación de servicios de comisión, y</p><p>c) Otorgamiento del uso o goce temporal de bienes.</p></div>
+        <div class="explanation"><small>Explicación</small><p>Se requieren tres elementos: el retenedor es persona moral; el proveedor es persona física; y la operación es honorarios, comisión o uso/goce temporal.</p><p>La base inmediata de la retención es el IVA trasladado y efectivamente pagado. Con tasa general del 16%, dos terceras partes equivalen, matemáticamente, a 10.6667% de la contraprestación; jurídicamente la fórmula correcta sigue siendo IVA × 2/3.</p></div>
+        <div class="example"><small>Fórmula</small><p>Contraprestación × tasa de IVA = IVA trasladado. Después: IVA trasladado efectivamente pagado × 2/3 = IVA retenido.</p></div>
+      </div></details>
+
+      <details class="legal-card" open><summary><span class="badge">II</span><span class="summary-title">4% de la contraprestación en autotransporte</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto reglamentario</small><p>II. La retención se hará por el 4% del valor de la contraprestación pagada efectivamente, cuando reciban los servicios de autotransporte terrestre de bienes que sean considerados como tales en los términos de las leyes de la materia.</p></div>
+        <div class="explanation"><small>Explicación</small><p>La retención se calcula directamente sobre el valor del servicio efectivamente pagado, no sobre el IVA. Debe tratarse jurídicamente de autotransporte terrestre de bienes.</p><p>El transportista puede ser persona física o moral, porque así lo dispone el artículo 1-A, fracción II, inciso c), de la LIVA.</p></div>
+        <div class="example"><small>Fórmula</small><p>Contraprestación efectivamente pagada × 4% = IVA retenido.</p></div>
+      </div></details>
+
+      <details class="legal-card" open><summary><span class="badge">Soporte</span><span class="summary-title">Documentación de cantidades adicionales del transportista</span><span class="chev">⌄</span></summary><div class="card-body">
+        <div class="law-text"><small>Texto reglamentario</small><p>Las personas físicas o morales que presten los servicios de autotransporte de bienes a que se refiere el párrafo anterior, deberán poner a disposición del Servicio de Administración Tributaria la documentación comprobatoria, de conformidad con las disposiciones fiscales, de las cantidades adicionales al valor de la contraprestación pactada por los citados servicios, que efectivamente se cobren a quien los reciba, por contribuciones distintas al impuesto al valor agregado, viáticos, gastos de toda clase, reembolsos, intereses normales o moratorios, penas convencionales y por cualquier otro concepto, identificando dicha documentación con tales erogaciones.</p></div>
+        <div class="explanation"><small>Explicación</small><p>El transportista debe poder demostrar y vincular documentalmente los cobros adicionales al precio pactado: contribuciones distintas del IVA, viáticos, gastos, reembolsos, intereses, penas y otros conceptos.</p><p>La finalidad es distinguir el valor del servicio de las cantidades adicionales y evitar que conceptos no identificados alteren indebidamente la base.</p></div>
+        <div class="example"><small>Ejemplo</small><p>Si además del flete se recuperan peajes o viáticos, el transportista debe conservar documentación que identifique esos cobros con las erogaciones correspondientes.</p></div>
+      </div></details>
+    </section>
+
+    <section class="section" id="correlacion">
+      <div class="section-head"><span class="section-no">04</span><div><h2>Correlación Ley–Reglamento</h2><p>Seleccione un caso. El panel muestra el supuesto legal, la regla reglamentaria y el resultado práctico.</p></div></div>
+      <div class="correlation">
+        <div class="case-list" role="tablist" aria-label="Casos de correlación">
+          <button class="case-btn active" data-case="honorarios">Honorarios PF → PM</button>
+          <button class="case-btn" data-case="arrendamiento">Arrendamiento PF → PM</button>
+          <button class="case-btn" data-case="comision">Comisión PF → PM</button>
+          <button class="case-btn" data-case="flete">Autotransporte → PM</button>
+          <button class="case-btn" data-case="desperdicios">Desperdicios → PM</button>
+          <button class="case-btn" data-case="extranjero">Bien tangible extranjero</button>
+        </div>
+        <div class="case-panel" id="casePanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="calculadora">
+      <div class="section-head"><span class="section-no">05</span><div><h2>Calculadora didáctica</h2><p>Compare la forma de calcular la retención reducida. Los resultados se redondean a dos decimales.</p></div></div>
+      <div class="calculator">
+        <div class="calc-grid">
+          <div>
+            <div class="field"><label for="operation">Tipo de operación</label><select id="operation"><option value="twothirds">Honorarios, comisión o arrendamiento: 2/3 del IVA</option><option value="freight">Autotransporte de bienes: 4% de contraprestación</option><option value="full">Comparativo didáctico: total del IVA trasladado</option></select></div>
+            <div class="field"><label for="base">Contraprestación efectivamente pagada</label><input id="base" type="number" min="0" step="0.01" value="10000" inputmode="decimal"></div>
+            <div class="field"><label for="vatRate">Tasa de IVA</label><select id="vatRate"><option value="0.16">16%</option><option value="0.08">8%</option><option value="0">0%</option></select></div>
+          </div>
+          <div>
+            <div class="result">
+              <div class="result-row"><span>Contraprestación</span><strong id="rBase">$10,000.00</strong></div>
+              <div class="result-row"><span>IVA trasladado</span><strong id="rVat">$1,600.00</strong></div>
+              <div class="result-row"><span>IVA retenido</span><strong id="rRetention">$1,066.67</strong></div>
+              <div class="result-row total"><span>Pago al proveedor*</span><strong id="rNet">$10,533.33</strong></div>
+              <div class="formula" id="rFormula">$1,600.00 × 2/3 = $1,066.67</div>
+            </div>
+            <p class="result-note">* Contraprestación + IVA − retención de IVA. No considera ISR, otras retenciones, descuentos ni conceptos adicionales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="autoevaluacion">
+      <div class="section-head"><span class="section-no">06</span><div><h2>Compruebe lo aprendido</h2><p>Seleccione una respuesta en cada reactivo. Obtendrá retroalimentación inmediata.</p></div></div>
+      <div class="quiz" id="quiz"></div>
+      <div class="scorebox" id="score">Resultado: 0 de 6</div>
+    </section>
+
+    <section class="section sources" id="fuentes">
+      <h2 style="margin-top:0">Fuentes y alcance</h2>
+      <p>Texto consultado en las compilaciones oficiales de la Cámara de Diputados: <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf" target="_blank" rel="noopener">Ley del Impuesto al Valor Agregado</a> y <a href="https://www.diputados.gob.mx/LeyesBiblio/regley/Reg_LIVA_250914.pdf" target="_blank" rel="noopener">Reglamento de la Ley del Impuesto al Valor Agregado</a>.</p>
+      <p>Este recurso explica exclusivamente la correlación solicitada entre el artículo 1-A de la LIVA y el artículo 3 del RLIVA. Para resolver un caso real deben revisarse la operación, el CFDI, las demás disposiciones fiscales y los criterios aplicables.</p>
+      <div class="warning"><strong>Aviso:</strong> material académico de apoyo; no constituye asesoría fiscal ni sustituye la consulta de la legislación vigente.</div>
+    </section>
+  </main>
+
+  <footer class="footer"><strong>Dr. Benjamín Díaz Villanueva</strong><span>Autor · Uso didáctico</span><small>Artículo 1-A LIVA correlacionado con el artículo 3 RLIVA</small></footer>
+
+  <script>
+    const root=document.documentElement, money=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:2});
+    const go=id=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+    document.getElementById('print').onclick=()=>window.print();
+    document.getElementById('fontUp').onclick=()=>{const n=Math.min(20,parseInt(getComputedStyle(root).getPropertyValue('--fs'))+1);root.style.setProperty('--fs',n+'px')};
+    document.getElementById('fontDown').onclick=()=>{const n=Math.max(14,parseInt(getComputedStyle(root).getPropertyValue('--fs'))-1);root.style.setProperty('--fs',n+'px')};
+    document.getElementById('theme').onclick=()=>{root.classList.toggle('dark');localStorage.setItem('liva-theme',root.classList.contains('dark')?'dark':'light')};
+    if(localStorage.getItem('liva-theme')==='dark')root.classList.add('dark');
+    document.getElementById('openAll').onclick=()=>document.querySelectorAll('details.legal-card').forEach(d=>d.open=true);
+    document.getElementById('closeAll').onclick=()=>document.querySelectorAll('details.legal-card').forEach(d=>d.open=false);
+    addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight,p=h>0?scrollY/h*100:0;document.getElementById('readProgress').style.width=Math.min(100,p)+'%'});
+
+    const cases={
+      honorarios:{title:'Servicios personales independientes',law:'LIVA 1-A, fracción II, inciso a): persona moral que recibe el servicio de una persona física.',rule:'RLIVA 3, fracción I, inciso a): retención de dos terceras partes del IVA trasladado y efectivamente pagado.',result:'Sí hay correlación directa. Fórmula: IVA pagado × 2/3.'},
+      arrendamiento:{title:'Uso o goce temporal de bienes',law:'LIVA 1-A, fracción II, inciso a): persona moral que usa o goza temporalmente un bien otorgado por persona física.',rule:'RLIVA 3, fracción I, inciso c): retención de dos terceras partes del IVA trasladado y efectivamente pagado.',result:'Sí hay correlación directa. La persona física debe ser quien otorga el uso o goce.'},
+      comision:{title:'Servicios de comisión',law:'LIVA 1-A, fracción II, inciso d): persona moral que recibe servicios de un comisionista persona física.',rule:'RLIVA 3, fracción I, inciso b): retención de dos terceras partes del IVA trasladado y efectivamente pagado.',result:'Sí hay correlación directa. Si el comisionista es persona moral, este inciso no configura la retención.'},
+      flete:{title:'Autotransporte terrestre de bienes',law:'LIVA 1-A, fracción II, inciso c): persona moral receptora; transportista persona física o moral.',rule:'RLIVA 3, fracción II: retención del 4% de la contraprestación efectivamente pagada.',result:'Sí hay correlación directa. El 4% se aplica a la contraprestación, no al IVA.'},
+      desperdicios:{title:'Adquisición de desperdicios',law:'LIVA 1-A, fracción II, inciso b): persona moral que adquiere desperdicios como insumo industrial o para comercialización.',rule:'El artículo 3 del RLIVA no incluye una retención reducida para este supuesto.',result:'No se aplica 2/3 ni 4%. Debe atenderse la regla legal y las demás disposiciones aplicables.'},
+      extranjero:{title:'Bienes tangibles de residente extranjero',law:'LIVA 1-A, fracción III: persona física o moral que adquiere o usa bienes tangibles de residente extranjero sin establecimiento permanente.',rule:'El artículo 3 del RLIVA no autoriza una cantidad menor para esta fracción.',result:'No hay reducción en el artículo 3. Debe revisarse también la territorialidad y si existe importación.'}
+    };
+    function showCase(key){const c=cases[key];document.getElementById('casePanel').innerHTML=`<h3>${c.title}</h3><p>Así se conectan las dos normas:</p><div class="mapping"><div class="mapbox l"><b>Artículo 1-A LIVA</b>${c.law}</div><div class="map-arrow">→</div><div class="mapbox r"><b>Artículo 3 RLIVA</b>${c.rule}</div></div><div class="verdict"><strong>Resultado:</strong> ${c.result}</div>`}
+    document.querySelectorAll('.case-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.case-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');showCase(b.dataset.case)});showCase('honorarios');
+
+    function calculate(){const type=document.getElementById('operation').value,base=Math.max(0,Number(document.getElementById('base').value)||0),rate=Number(document.getElementById('vatRate').value),vat=base*rate;let retention=0,formula='';if(type==='twothirds'){retention=vat*2/3;formula=`${money.format(vat)} × 2/3 = ${money.format(retention)}`}else if(type==='freight'){retention=base*.04;formula=`${money.format(base)} × 4% = ${money.format(retention)}`}else{retention=vat;formula=`100% del IVA trasladado = ${money.format(retention)}`}document.getElementById('rBase').textContent=money.format(base);document.getElementById('rVat').textContent=money.format(vat);document.getElementById('rRetention').textContent=money.format(retention);document.getElementById('rNet').textContent=money.format(base+vat-retention);document.getElementById('rFormula').textContent=formula}
+    ['operation','base','vatRate'].forEach(id=>document.getElementById(id).addEventListener('input',calculate));calculate();
+
+    const questions=[
+      {q:'¿Quién debe retener por honorarios pagados por una persona moral?',o:['La persona física prestadora','La persona moral receptora','El banco del proveedor','Nadie'],a:1,e:'La obligación se ubica en el artículo 1-A, fracción II, inciso a).'},
+      {q:'En honorarios de persona física a persona moral, ¿cuánto IVA se retiene conforme al artículo 3?',o:['4% del IVA','Todo el precio','Dos terceras partes del IVA pagado','Una tercera parte del precio'],a:2,e:'El RLIVA toma como base el IVA trasladado y efectivamente pagado.'},
+      {q:'En autotransporte terrestre de bienes, el 4% se calcula sobre:',o:['El IVA trasladado','La contraprestación efectivamente pagada','La utilidad del transportista','El total después de IVA'],a:1,e:'El artículo 3, fracción II, señala el valor de la contraprestación pagada efectivamente.'},
+      {q:'¿El transportista puede ser persona moral?',o:['No, nunca','Sí, la LIVA admite persona física o moral','Sólo si es extranjero','Sólo si no traslada IVA'],a:1,e:'El artículo 1-A, fracción II, inciso c), menciona expresamente personas físicas o morales.'},
+      {q:'¿Cuándo se efectúa la retención según el artículo 1-A?',o:['Al emitir la cotización','Al firmar el contrato','Cuando se paga, sobre lo efectivamente pagado','Al cerrar el ejercicio'],a:2,e:'La Ley adopta el momento de pago y el monto efectivamente pagado.'},
+      {q:'¿El artículo 3 reduce la retención por compra de desperdicios?',o:['Sí, siempre a 4%','Sí, a dos terceras partes','No la incluye entre sus reducciones','La elimina por completo'],a:2,e:'El artículo 3 sólo enumera honorarios, comisión, uso o goce temporal y autotransporte.'}
+    ];let answered=new Set,correct=0;const quiz=document.getElementById('quiz');
+    questions.forEach((x,i)=>{const el=document.createElement('article');el.className='question';el.innerHTML=`<h3>${i+1}. ${x.q}</h3><div class="options">${x.o.map((v,j)=>`<button class="option" data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${v}</button>`).join('')}</div><div class="feedback" id="fb${i}"></div>`;quiz.appendChild(el)});
+    quiz.addEventListener('click',e=>{const b=e.target.closest('.option');if(!b||answered.has(+b.dataset.i))return;const i=+b.dataset.i,j=+b.dataset.j,x=questions[i];answered.add(i);b.parentElement.querySelectorAll('.option').forEach((o,k)=>{o.disabled=true;if(k===x.a)o.classList.add('correct')});if(j===x.a)correct++;else b.classList.add('wrong');const fb=document.getElementById('fb'+i);fb.textContent=(j===x.a?'Correcto. ':'Revise la respuesta. ')+x.e;fb.classList.add('show');document.getElementById('score').textContent=`Resultado: ${correct} de ${questions.length}${answered.size===questions.length?' · '+(correct>=4?'¡Buen dominio!':'Conviene repasar los bloques anteriores.') :''}`});
+
+    const sections=[...document.querySelectorAll('main .section[id]')],navs=[...document.querySelectorAll('.navbtn[data-go]')];
+    const obs=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){navs.forEach(n=>n.classList.toggle('active',n.dataset.go===en.target.id))}}),{rootMargin:'-35% 0px -55%'});sections.forEach(s=>obs.observe(s));
+  </script>
+</body>
+</html>
